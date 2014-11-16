@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>baijinping的程序世界</title>
+    <title>python超简约替换文件字符串</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="baijinping">
@@ -64,7 +64,7 @@
           <div class="nav-collapse">
             <ul class="nav">
                           <li class="divider-vertical"></li>
-                  <li >
+                  <li class="active">
                     <a href="./category/python.html">
 						<i class="icon-folder-open icon-large"></i>Python
 					</a>
@@ -89,9 +89,20 @@
     <div class="container-fluid">
       <div class="row">
         <div class="span9" id="content">
-        <div class="article">
-                <h1><a href="./python-change-file-line.html">python超简约替换文件字符串</a></h1>
-                <div class="well small"><footer class="post-info">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to python超简约替换文件字符串">
+                                        python超简约替换文件字符串
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
 <span class="label">Date</span>
 <abbr class="published" title="2014-11-16T10:05:00+08:00">
         <i class="icon-calendar"></i>2014-11-16
@@ -104,34 +115,46 @@
 
 <span class="label">Tags</span>
 	<a href="./tag/python.html"><i class="icon-tag"></i>Python</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>python-文件字符串替换（超简约）</p>
-                        <a class="btn primary xsmall" href="./python-change-file-line.html">more ...</a>
+</footer><!-- /.post-info -->                </div>
+                <p>这里使用了re库。</p>
+<div class="highlight"><pre><span class="cp">#encoding:utf8</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="err">实现修改某一文件中</span><span class="p">,</span><span class="err">包含指定子串的行</span><span class="p">,</span><span class="err">替换为指定字符串</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="n">import</span> <span class="n">re</span><span class="p">;</span>
+<span class="n">def</span> <span class="nf">changeFileLineToNew</span><span class="p">(</span><span class="n">filePath</span><span class="p">,</span> <span class="n">strToFind</span><span class="p">,</span> <span class="n">strToReplace</span><span class="p">)</span><span class="o">:</span>
+    <span class="s">&quot;修改后直接覆盖源文件&quot;</span>
+    <span class="n">with</span> <span class="n">open</span><span class="p">(</span><span class="n">filePath</span><span class="p">)</span> <span class="n">as</span> <span class="n">f</span><span class="o">:</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
+    <span class="err">#关键是下面这行</span>
+    <span class="err">#</span> <span class="err">打开源文件，都出来用</span><span class="n">re</span><span class="err">进行字符串替换，然后保存到源文件中</span>
+    <span class="n">open</span><span class="p">(</span><span class="n">filePath</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">).</span><span class="n">write</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="n">strToFind</span><span class="p">,</span> <span class="n">strToReplace</span><span class="p">,</span> <span class="n">content</span><span class="p">));</span>
+    <span class="n">pass</span>
+
+<span class="n">def</span> <span class="nf">test</span><span class="p">()</span><span class="o">:</span>
+    <span class="n">changeFileLine</span><span class="p">(</span><span class="s">&quot;adMod.lua&quot;</span><span class="p">,</span> <span class="s">&quot;local reqUrl&quot;</span><span class="p">,</span> <span class="s">&quot;local reqUrl = &#39;192.168.1.1&#39;&quot;</span><span class="p">);</span>
+    <span class="n">pass</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="err">&#39;</span><span class="n">__main__</span><span class="err">&#39;</span><span class="o">:</span>
+    <span class="n">test</span><span class="p">()</span>
+</pre></div>
+                </div><!-- /.entry-content -->
+                <div class="comments">
+                <h2>Comments !</h2>
+                        <div id="disqus_thread"></div>
+                        <script type="text/javascript">
+                           var disqus_identifier = "python-change-file-line.html";
+                           (function() {
+                                var dsq = document.createElement('script');
+                                dsq.type = 'text/javascript'; dsq.async = true;
+                                dsq.src = 'http://baijinpingworld.disqus.com/embed.js';
+                                (document.getElementsByTagName('head')[0] ||
+                                 document.getElementsByTagName('body')[0]).appendChild(dsq);
+                          })();
+                        </script>
                 </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="./first_blog.html">开博</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2014-11-07T22:58:00+08:00">
-        <i class="icon-calendar"></i>2014-11-07
-</abbr>
-<span class="label">By</span>
-<a href="./author/baijinping.html"><i class="icon-user"></i>baijinping</a>
-<span class="label">Category</span>
-<a href="./category/sheng-huo-za-tan.html"><i class="icon-folder-open"></i>生活杂谈</a>.
-
-
-<span class="label">Tags</span>
-	<a href="./tag/life.html"><i class="icon-tag"></i>Life</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>开博有感</p>
-                        <a class="btn primary xsmall" href="./first_blog.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-
+        </article>
+</section>
         </div><!--/span-->
 
                 <div class="span3 well sidebar-nav" id="sidebar">
