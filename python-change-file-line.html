@@ -122,26 +122,26 @@
 	<a href="./tag/python.html"><i class="icon-tag"></i>Python</a>
 </footer><!-- /.post-info -->                </div>
                 <p>这里使用了re库。</p>
-<div class="highlight"><pre>    <span class="err">#</span><span class="n">encoding</span><span class="o">:</span><span class="n">utf8</span>
-    <span class="s">&quot;&quot;&quot;</span>
-    <span class="err">实现修改某一文件中</span><span class="p">,</span><span class="err">包含指定子串的行</span><span class="p">,</span><span class="err">替换为指定字符串</span>
-    <span class="s">&quot;&quot;&quot;</span>
-    <span class="n">import</span> <span class="n">re</span><span class="p">;</span>
-    <span class="n">def</span> <span class="nf">changeFileLineToNew</span><span class="p">(</span><span class="n">filePath</span><span class="p">,</span> <span class="n">strToFind</span><span class="p">,</span> <span class="n">strToReplace</span><span class="p">)</span><span class="o">:</span>
-        <span class="s">&quot;修改后直接覆盖源文件&quot;</span>
-        <span class="n">with</span> <span class="n">open</span><span class="p">(</span><span class="n">filePath</span><span class="p">)</span> <span class="n">as</span> <span class="n">f</span><span class="o">:</span>
-            <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
-        <span class="err">#关键是下面这行</span>
-        <span class="err">#</span> <span class="err">打开源文件，都出来用</span><span class="n">re</span><span class="err">进行字符串替换，然后保存到源文件中</span>
-        <span class="n">open</span><span class="p">(</span><span class="n">filePath</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">).</span><span class="n">write</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="n">strToFind</span><span class="p">,</span> <span class="n">strToReplace</span><span class="p">,</span> <span class="n">content</span><span class="p">));</span>
-        <span class="n">pass</span>
+<div class="highlight"><pre><span class="cp">#encoding:utf8</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="err">实现修改某一文件中</span><span class="p">,</span><span class="err">包含指定子串的行</span><span class="p">,</span><span class="err">替换为指定字符串</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="n">import</span> <span class="n">re</span><span class="p">;</span>
+<span class="n">def</span> <span class="nf">changeFileLineToNew</span><span class="p">(</span><span class="n">filePath</span><span class="p">,</span> <span class="n">strToFind</span><span class="p">,</span> <span class="n">strToReplace</span><span class="p">)</span><span class="o">:</span>
+    <span class="s">&quot;修改后直接覆盖源文件&quot;</span>
+    <span class="n">with</span> <span class="n">open</span><span class="p">(</span><span class="n">filePath</span><span class="p">)</span> <span class="n">as</span> <span class="n">f</span><span class="o">:</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
+    <span class="err">#关键是下面这行</span>
+    <span class="err">#</span> <span class="err">打开源文件，都出来用</span><span class="n">re</span><span class="err">进行字符串替换，然后保存到源文件中</span>
+    <span class="n">open</span><span class="p">(</span><span class="n">filePath</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">).</span><span class="n">write</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="n">strToFind</span><span class="p">,</span> <span class="n">strToReplace</span><span class="p">,</span> <span class="n">content</span><span class="p">));</span>
+    <span class="n">pass</span>
 
-    <span class="n">def</span> <span class="nf">test</span><span class="p">()</span><span class="o">:</span>
-        <span class="n">changeFileLine</span><span class="p">(</span><span class="s">&quot;adMod.lua&quot;</span><span class="p">,</span> <span class="s">&quot;local reqUrl&quot;</span><span class="p">,</span> <span class="s">&quot;local reqUrl = &#39;192.168.1.1&#39;&quot;</span><span class="p">);</span>
-        <span class="n">pass</span>
+<span class="n">def</span> <span class="nf">test</span><span class="p">()</span><span class="o">:</span>
+    <span class="n">changeFileLine</span><span class="p">(</span><span class="s">&quot;adMod.lua&quot;</span><span class="p">,</span> <span class="s">&quot;local reqUrl&quot;</span><span class="p">,</span> <span class="s">&quot;local reqUrl = &#39;192.168.1.1&#39;&quot;</span><span class="p">);</span>
+    <span class="n">pass</span>
 
-    <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="err">&#39;</span><span class="n">__main__</span><span class="err">&#39;</span><span class="o">:</span>
-        <span class="n">test</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="err">&#39;</span><span class="n">__main__</span><span class="err">&#39;</span><span class="o">:</span>
+    <span class="n">test</span><span class="p">()</span>
 </pre></div>
                 </div><!-- /.entry-content -->
                 <div class="comments">
@@ -188,9 +188,9 @@
 </li>
 
 <li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
-<li class="tag-4">
-    <a href="./tag/memcache.html">
-        <i class="icon-tag icon-large"></i>Memcache
+<li class="tag-1">
+    <a href="./tag/python.html">
+        <i class="icon-tag icon-large"></i>Python
     </a>
 </li>
 <li class="tag-4">
@@ -198,9 +198,9 @@
         <i class="icon-tag icon-large"></i>Life
     </a>
 </li>
-<li class="tag-1">
-    <a href="./tag/python.html">
-        <i class="icon-tag icon-large"></i>Python
+<li class="tag-4">
+    <a href="./tag/memcache.html">
+        <i class="icon-tag icon-large"></i>Memcache
     </a>
 </li>
 
