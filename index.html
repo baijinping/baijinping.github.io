@@ -65,6 +65,11 @@
             <ul class="nav">
                           <li class="divider-vertical"></li>
                   <li >
+                    <a href="./category/nosql.html">
+						<i class="icon-folder-open icon-large"></i>NoSQL
+					</a>
+                  </li>
+                  <li >
                     <a href="./category/python.html">
 						<i class="icon-folder-open icon-large"></i>Python
 					</a>
@@ -89,6 +94,47 @@
     <div class="container-fluid">
       <div class="row">
         <div class="span9" id="content">
+        <div class="article">
+                <h1><a href="./read-memcached-data-and-dump-keys.html">实时查看memcache中的数据</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2014-12-12T14:30:00+08:00">
+        <i class="icon-calendar"></i>2014-12-12
+</abbr>
+<span class="label">By</span>
+<a href="./author/baijinping.html"><i class="icon-user"></i>baijinping</a>
+<span class="label">Category</span>
+<a href="./category/nosql.html"><i class="icon-folder-open"></i>NoSQL</a>.
+
+
+<span class="label">Tags</span>
+	<a href="./tag/memcache.html"><i class="icon-tag"></i>Memcache</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><h2>实时查看memcache中的数据</h2>
+<h4>memcache命令</h4>
+<p>可用telnet与memcache进行通信：</p>
+<p><code>telnet {:hostname} {:port}</code></p>
+<p>memcache的通信协议是简单文本行。使用get key可以查看对应key的值。</p>
+<p>memcache中查看数据时常用的命令：
+- <code>stats</code> 查看状态信息
+- <code>stats items</code> 列出每个slabs的简要信息
+- <code>stats slabs</code> 列出每个slabs的详细信息
+- <code>stats cachedump {:slabNo} {:rowNo}</code> 列出rowNo个位于指定slabNo的记录的key，如果rowNo为0，表示列出所有
+- <code>get {:key}</code> 获取指定key的数据</p>
+<hr />
+<h4>关于获取memcache的所有key</h4>
+<p>我在网上专门查找过关于“获取及遍历memcache的所有key”这一问题的解决方案，但无一例外都是使用<code>stats cachedump</code>命令来获取的。这个简单易懂命令很容易让人忽略一个事实，那就是cachedump能获取到的内容的大小是有上限的，cache的大小是2M。</p>
+<p>这意味着你无法确保cachedump能够将所有key导出。
+当然，这比没有要好多了。</p>
+<hr />
+<h4>参考</h4>
+<blockquote>
+<p>http://lzone.de/dump%20memcache%20keys
+http ...</p></blockquote>
+                        <a class="btn primary xsmall" href="./read-memcached-data-and-dump-keys.html">more ...</a>
+                </div>
+        </div>
+        <hr />
         <div class="article">
                 <h1><a href="./python-error-permission-denied.html">Python(Errno13)PYTHON_EGG_CACHE设置</a></h1>
                 <div class="well small"><footer class="post-info">
@@ -167,6 +213,11 @@
 
 <li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
 <li>
+<a href="./category/nosql.html">
+    <i class="icon-folder-open icon-large"></i>NoSQL
+</a>
+</li>
+<li>
 <a href="./category/python.html">
     <i class="icon-folder-open icon-large"></i>Python
 </a>
@@ -178,14 +229,19 @@
 </li>
 
 <li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
-<li class="tag-1">
-    <a href="./tag/python.html">
-        <i class="icon-tag icon-large"></i>Python
-    </a>
-</li>
 <li class="tag-4">
     <a href="./tag/life.html">
         <i class="icon-tag icon-large"></i>Life
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/memcache.html">
+        <i class="icon-tag icon-large"></i>Memcache
+    </a>
+</li>
+<li class="tag-1">
+    <a href="./tag/python.html">
+        <i class="icon-tag icon-large"></i>Python
     </a>
 </li>
 
