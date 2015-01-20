@@ -137,14 +137,14 @@
 </blockquote>
 <p>接收到凭证后,需要对这个字符串进行解码处理后才能提交到苹果服务器校验.
 解码步骤如下:
-- 把前后尖括号去掉
-- 遍历整个字符串，两两取出字符
-- 对两个字符转换成byte，接着把byte转换为char
-- 拼接char字符到字符串中
-- 把拼接好的字符串转换成byte数组
-- byte数组转换为base64位的字符串
-- 创建一个json格式：key为receipt-data，value为base64位字符串
-- Post数据到苹果订单验证地址</p>
+<em> 把前后尖括号去掉
+</em> 遍历整个字符串，两两取出字符
+<em> 对两个字符转换成byte，接着把byte转换为char
+</em> 拼接char字符到字符串中
+<em> 把拼接好的字符串转换成byte数组
+</em> byte数组转换为base64位的字符串
+<em> 创建一个json格式：key为receipt-data，value为base64位字符串
+</em> Post数据到苹果订单验证地址</p>
 <h3>python实现</h3>
 <hr />
 <div class="highlight"><pre>   <span class="s-Atom">def</span> <span class="nf">decodeOrder</span><span class="p">(</span><span class="s-Atom">self</span><span class="p">,</span> <span class="s-Atom">orderStr</span><span class="p">)</span><span class="s-Atom">:</span>
@@ -166,8 +166,8 @@
 <p>ewoJInNpZ25hdHVyZSIgPSAiQXE3V2xZQUNxalk3TU5sWTVSK0h1M21sdlNEUXRSQjNTbXNOT2FsWElvQ1RaK3JYM05xWExUSnFOUzBuQ3Axd083VWZ5MlE2Y0hiK2h0eVY4Z1BUN1IyTnFVS2pkcG9nYmp2ZG5CMUtpWmRPVGhtODlEckE1a2w3bWFaVjRKcFlyaEVmQTNUZzVRU201TE9lYUllbVN0NmtsbndzSHMvMlhCR1p2ZS9IMEsyZkFBQURWekNDQTFNd2dnSTdvQU1DQVFJQ0NHVVVrVTNaV0FTMU1BMEdDU3FHU0liM0RRRUJCUVVBTUg4eEN6QUpCZ05WQkFZVEFsVlRNUk13RVFZRFZRUUtEQXBCY0hCc1pTQkpibU11TVNZd0pBWURWUVFMREIxQmNIQnNaU0JEWlhKMGFXWnBZMkYwYVc5dUlFRjFkR2h2Y21sMGVURXpNREVHQTFVRUF3d3FRWEJ3YkdVZ2FWUjFibVZ6SUZOMGIzSmxJRU5sY25ScFptbGpZWFJwYjI0Z1FYVjBhRzl5YVhSNU1CNFhEVEE1TURZeE5USXlNRFUxTmxvWERURTBNRFl4TkRJeU1EVTFObG93WkRFak1DRUdBMVVFQXd3YVVIVnlZMmhoYzJWU1pXTmxhWEIwUTJWeWRHbG1hV05oZEdVeEd6QVpCZ05WQkFzTUVrRndjR3hsSUdsVWRXNWxjeUJUZEc5eVpURVRNQkVHQTFVRUNnd0tRWEJ3YkdVZ1NXNWpMakVMTUFrR0ExVUVCaE1DVlZNd2daOHdEUVlKS29aSWh2Y05BUUVCQlFBRGdZMEFNSUdKQW9HQkFNclJqRjJjdDRJclNkaVRDaGFJMGc4cHd2L2NtSHM4cC9Sd1YvcnQvOTFYS1ZoTmw0WElCaW1LalFRTmZnSHNEczZ5anUrK0RyS0pFN3VLc3BoTWRkS1lmRkU1ckdYc0FkQkVqQndSSXhleFRldngzSExFRkdBdDFtb0t4NTA5ZGh4dGlJZERnSnYyWWFWczQ5QjB1SnZOZHk2U01xTk5MSHNETHpEUzlvWkhBZ01CQUFHamNqQndNQXdHQTFVZEV3RUIvd1FDTUFBd0h3WURWUjBqQkJnd0ZvQVVOaDNvNHAyQzBnRVl0VEpyRHRkREM1RllRem93RGdZRFZSMFBBUUgvQkFRREFnZUFNQjBHQTFVZERnUVdCQlNwZzRQeUdVakZQaEpYQ0JUTXphTittVjhrOVRBUUJnb3Foa2lHOTJOa0JnVUJCQUlGQURBTkJna3Foa2lHOXcwQkFRVUZBQU9DQVFFQUVhU2JQanRtTjRDL0lCM1FFcEszMlJ4YWNDRFhkVlhBZVZSZVM1RmFaeGMrdDg4cFFQOTNCaUF4dmRXLzNlVFNNR1k1RmJlQVlMM2V0cVA1Z204d3JGb2pYMGlreVZSU3RRKy9BUTBLRWp0cUIwN2tMczlRVWU4Y3pSOFVHZmRNMUV1bVYvVWd2RGQ0TndOWXhMUU1nNFdUUWZna1FRVnk4R1had1ZIZ2JFL1VDNlk3MDUzcEdYQms1MU5QTTN3b3hoZDNnU1JMdlhqK2xvSHNTdGNURXFlOXBCRHBtRzUrc2s0dHcrR0szR01lRU41LytlMVFUOW5wL0tsMW5qK2FCdzdDMHhzeTBiRm5hQWQxY1NTNnhkb3J5L0NVdk02Z3RLc21uT09kcVRlc2JwMGJzOHNuNldxczBDOWRnY3hSSHVPTVoydG04bnBMVW03YXJnT1N6UT09IjsKCSJwdXJjaGFzZS1pbmZvIiA9ICJld29KSW05eWFXZHBibUZzTFhCMWNtTm9ZWE5sTFdSaGRHVXRjSE4wSWlBOUlDSXlNREV6TFRFd0xUQTRJREEyT2pJM09qQXpJRUZ0WlhKcFkyRXZURzl6WDBGdVoyVnNaWE1pT3dvSkluQjFjbU5vWVhObExXUmhkR1V0YlhNaUlEMGdJakV6T0RFeU16ZzRNak16TlRnaU93b0pJblZ1YVhGMVpTMXBaR1Z1ZEdsbWFXVnlJaUE5SUNJMk1UTTVaRGRtWXpJeE1XWmhORFZpTlRnMk1XUXlNR1l6TkRRME0ySTJZVGMwTURSaVlqTXlJanNLQ1NKdmNtbG5hVzVoYkMxMGNtRnVjMkZqZEdsdmJpMXBaQ0lnUFNBaU5Ua3dNREF3TURNd056SXhNRGsySWpzS0NTSmlkbkp6SWlBOUlDSXhMamN1TVNJN0Nna2lZWEJ3TFdsMFpXMHRhV1FpSUQwZ0lqVTRPRGt3T1RRME9DSTdDZ2tpZEhKaGJuTmhZM1JwYjI0dGFXUWlJRDBnSWpVNU1EQXdNREF6TURjeU1UQTVOaUk3Q2draWNYVmhiblJwZEhraUlEMGdJakVpT3dvSkltOXlhV2RwYm1Gc0xYQjFjbU5vWVhObExXUmhkR1V0YlhNaUlEMGdJakV6T0RFeU16ZzRNak16TlRnaU93b0pJblZ1YVhGMVpTMTJaVzVrYjNJdGFXUmxiblJwWm1sbGNpSWdQU0FpUXpjMk5EWTVOME10UVRNNE1DMDBSVEJCTFRnM01qWXROME00TURJeE5VUTVORUV6SWpzS0NTSnBkR1Z0TFdsa0lpQTlJQ0kxT0RnNU5ERTRPRFlpT3dvSkluWmxjbk5wYjI0dFpYaDBaWEp1WVd3dGFXUmxiblJwWm1sbGNpSWdQU0FpTVRZME1qUTBOVFFpT3dvSkluQnliMlIxWTNRdGFXUWlJRDBnSW1oMVlXNW5jMmhoYm1kcWFYaHBZVzVuWHpJaU93b0pJbkIxY21Ob1lYTmxMV1JoZEdVaUlEMGdJakl3TVRNdE1UQXRNRGdnTVRNNk1qYzZNRE1nUlhSakwwZE5WQ0k3Q2draWIzSnBaMmx1WVd3dGNIVnlZMmhoYzJVdFpHRjBaU0lnUFNBaU1qQXhNeTB4TUMwd09DQXhNem95Tnpvd015QkZkR012UjAxVUlqc0tDU0ppYVdRaUlEMGdJbU52YlM1eVlXUnBZMkZzTG1oMVlXNW5jMmhoYm1kcWFYaHBZVzVuSWpzS0NTSndkWEpqYUdGelpTMWtZWFJsTFhCemRDSWdQU0FpTWpBeE15MHhNQzB3T0NBd05qb3lOem93TXlCQmJXVnlhV05oTDB4dmMxOUJibWRsYkdWeklqc0tmUT09IjsKCSJwb2QiID0gIjU5IjsKCSJzaWduaW5nLXN0YXR1cyIgPSAiMCI7Cn0=</p>
 </blockquote>
 <p>随后将这个字符串post给苹果的验证服务器即可得到校验结果.
-- 正式订单验证服务器:https://buy.itunes.apple.com/verifyReceipt
-- 沙箱订单验证服务器https://sandbox.itunes.apple.com/verifyReceipt</p>
+<em> 正式订单验证服务器:https://buy.itunes.apple.com/verifyReceipt
+</em> 沙箱订单验证服务器https://sandbox.itunes.apple.com/verifyReceipt</p>
 <p>如上边的订单经过校验后，可以得到下面的json结果:</p>
 <div class="highlight"><pre><span class="p">{</span>
     <span class="s">&quot;status&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
@@ -197,8 +197,8 @@
 <h3>关于凭证</h3>
 <hr />
 <p>从客户端上传的凭证，有几点需要补充下的:
-- 将解析后的凭证进行Base64解码之后，可以得到类似"{key1=value1; key2=value2}"的数据，将其中key=？？？？？的数据再进行Base64解码之后可以得到这次购买的一些数据。如产品标识，购买时间等;
-- 客户端上传的最开始的凭证可以进行多次验证，因此需要服务端需要保存该凭证，防止同一凭证多次请求</p>
+<em> 将解析后的凭证进行Base64解码之后，可以得到类似"{key1=value1; key2=value2}"的数据，将其中key=？？？？？的数据再进行Base64解码之后可以得到这次购买的一些数据。如产品标识，购买时间等;
+</em> 客户端上传的最开始的凭证可以进行多次验证，因此需要服务端需要保存该凭证，防止同一凭证多次请求</p>
 <hr />
 <h4>参考</h4>
 <blockquote>
@@ -261,13 +261,13 @@
     </a>
 </li>
 <li class="tag-4">
-    <a href="./tag/life.html">
-        <i class="icon-tag icon-large"></i>Life
+    <a href="./tag/iap.html">
+        <i class="icon-tag icon-large"></i>IAP
     </a>
 </li>
 <li class="tag-4">
-    <a href="./tag/iap.html">
-        <i class="icon-tag icon-large"></i>IAP
+    <a href="./tag/life.html">
+        <i class="icon-tag icon-large"></i>Life
     </a>
 </li>
 <li class="tag-4">
