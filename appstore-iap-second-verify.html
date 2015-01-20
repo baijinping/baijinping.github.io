@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>对appstore的IAP订单进行服务端的二次验证</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="baijinping">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="./theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="./theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="./theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="./theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="./theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="./theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="./theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="./theme/images/apple-touch-icon-114x114.png">
+
+    <link href="./" type="application/atom+xml" rel="alternate" title="baijinping的程序世界 ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="./index.html">baijinping的程序世界 </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+                  <li >
+                    <a href="./category/nosql.html">
+						<i class="icon-folder-open icon-large"></i>NoSQL
+					</a>
+                  </li>
+                  <li >
+                    <a href="./category/python.html">
+						<i class="icon-folder-open icon-large"></i>Python
+					</a>
+                  </li>
+                  <li >
+                    <a href="./category/sheng-huo-za-tan.html">
+						<i class="icon-folder-open icon-large"></i>生活杂谈
+					</a>
+                  </li>
+                  <li class="active">
+                    <a href="./category/yi-dong-kai-fa.html">
+						<i class="icon-folder-open icon-large"></i>移动开发
+					</a>
+                  </li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="./archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to 对appstore的IAP订单进行服务端的二次验证">
+                                        对appstore的IAP订单进行服务端的二次验证
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2015-01-20T23:00:00+08:00">
+        <i class="icon-calendar"></i>2015-01-20
+</abbr>
+<span class="label">By</span>
+<a href="./author/baijinping.html"><i class="icon-user"></i>baijinping</a>
+<span class="label">Category</span>
+<a href="./category/yi-dong-kai-fa.html"><i class="icon-folder-open"></i>移动开发</a>.
+
+
+<span class="label">Tags</span>
+	<a href="./tag/python.html"><i class="icon-tag"></i>python</a>
+	<a href="./tag/iap.html"><i class="icon-tag"></i>IAP</a>
+</footer><!-- /.post-info -->                </div>
+                <h2>对appstore的IAP订单进行服务端的二次验证</h2>
+<p>当iOS应用进行IAP付费后(客户端与AppStore通信),AppStore会返回支付凭证给客户端.为了防止恶意破解,实际生产中通常需要对该次支付进行二次验证.</p>
+<h3>验证主要流程和要点</h3>
+<hr />
+<p>客户端接收到支付凭证后,首先向服务端上传支付凭证.服务端接收到的支付凭证是一个大小约等于4k的字符串.举例如下:</p>
+<blockquote>
+<p>&lt;7b0a09227369676e617475726522203d2022417137576c594143716a59374d4e6c5935522b4875336d6c7653445174524233536d734e4f616c58496f43545a2b7258334e71584c544a714e53306e437031774f375566793251366348622b68747956386750543752324e71554b6a64706f67626a76646e42314b695a644f54686d3839447241356b6c376d615a56344a705972684566413354673551536d354c4f656149656d5374366b6c6e777348732f325842475a76652f48304b326641414144567a434341314d77676749376f414d4341514943434755556b55335a574153314d413047435371475349623344514542425155414d483878437a414a42674e5642415954416c56544d524d77455159445651514b44417042634842735a53424a626d4d754d5359774a4159445651514c44423142634842735a5342445a584a3061575a7059324630615739754945463164476876636d6c306554457a4d4445474131554541777771515842776247556761565231626d567a49464e3062334a6c49454e6c636e52705a6d6c6a59585270623234675158563061473979615852354d423458445441354d4459784e5449794d4455314e6c6f58445445304d4459784e4449794d4455314e6c6f775a44456a4d43454741315545417777615548567959326868633256535a574e6c615842305132567964476c6d61574e6864475578477a415a42674e564241734d456b46776347786c49476c556457356c63794254644739795a5445544d424547413155454367774b51584277624755675357356a4c6a454c4d416b474131554542684d4356564d77675a38774451594a4b6f5a496876634e4151454242514144675930414d49474a416f4742414d72526a4632637434497253646954436861493067387077762f636d487338702f5277562f72742f3931584b56684e6c34584942696d4b6a51514e66674873447336796a752b2b44724b4a4537754b7370684d64644b596646453572475873416442456a427752497865785465767833484c4546474174316d6f4b783530396468787469496444674a76325961567334394230754a764e647936534d714e4e4c4873444c7a4453396f5a4841674d424141476a636a42774d41774741315564457745422f7751434d414177487759445652306a42426777466f41554e68336f347032433067455974544a724474644443354659517a6f7744675944565230504151482f42415144416765414d4230474131556444675157424253706734507947556a4650684a584342544d7a614e2b6d56386b3954415142676f71686b694739324e6b42675542424149464144414e42676b71686b6947397730424151554641414f434151454145615362506a746d4e34432f4942335145704b3332527861634344586456584165565265533546615a78632b7438387051503933426941787664572f336554534d47593546626541594c336574715035676d387772466f6a5830696b7956525374512b2f4151304b456a74714230376b4c733951556538637a5238554766644d3145756d562f5567764464344e774e59784c514d673457545166676b515156793847585a7756486762452f5543365937303533704758426b35314e504d33776f786864336753524c76586a2b6c6f48735374635445716539704244706d47352b736b3474772b474b33474d65454e352f2b65315154396e702f4b6c316e6a2b6142773743307873793062466e614164316353533678646f72792f4355764d3667744b736d6e4f4f6471546573627030627338736e36577173304339646763785248754f4d5a32746d386e704c556d376172674f537a513d3d223b0a092270757263686173652d696e666f22203d202265776f4a496d397961576470626d46734c584231636d4e6f59584e6c4c5752686447557463484e3049694139494349794d44457a4c5445774c544134494441324f6a49334f6a417a494546745a584a70593245765447397a583046755a3256735a584d694f776f4a496e4231636d4e6f59584e6c4c5752686447557462584d6949443067496a457a4f4445794d7a67344d6a4d7a4e5467694f776f4a496e5675615846315a5331705a47567564476c6d6157567949694139494349324d544d355a44646d597a49784d575a684e4456694e5467324d5751794d47597a4e4451304d324932595463304d445269596a4d79496a734b43534a76636d6c6e6157356862433130636d46756332466a64476c76626931705a434967505341694e546b774d4441774d444d774e7a49784d446b32496a734b43534a69646e4a7a49694139494349784c6a63754d53493743676b69595842774c576c305a5730746157516949443067496a55344f446b774f5451304f43493743676b6964484a68626e4e6859335270623234746157516949443067496a55354d4441774d44417a4d4463794d5441354e69493743676b6963585668626e527064486b6949443067496a45694f776f4a496d397961576470626d46734c584231636d4e6f59584e6c4c5752686447557462584d6949443067496a457a4f4445794d7a67344d6a4d7a4e5467694f776f4a496e5675615846315a5331325a57356b623349746157526c626e52705a6d6c6c6369496750534169517a63324e4459354e304d7451544d344d433030525442424c5467334d6a59744e304d344d4449784e5551354e45457a496a734b43534a70644756744c576c6b49694139494349314f4467354e4445344f4459694f776f4a496e5a6c636e4e70623234745a5868305a584a75595777746157526c626e52705a6d6c6c63694967505341694d5459304d6a51304e5451694f776f4a496e427962325231593351746157516949443067496d68315957356e63326868626d6471615868705957356e587a49694f776f4a496e4231636d4e6f59584e6c4c5752686447556949443067496a49774d544d744d5441744d4467674d544d364d6a63364d444d675258526a4c30644e5643493743676b6962334a705a326c75595777746348567959326868633255745a4746305a534967505341694d6a41784d7930784d4330774f4341784d7a6f794e7a6f774d79424664474d7652303155496a734b43534a696157516949443067496d4e766253357959575270593246734c6d68315957356e63326868626d6471615868705957356e496a734b43534a7764584a6a6147467a5a53316b5958526c4c58427a64434967505341694d6a41784d7930784d4330774f4341774e6a6f794e7a6f774d7942426257567961574e684c30787663313942626d646c6247567a496a734b66513d3d223b0a0922706f6422203d20223539223b0a09227369676e696e672d73746174757322203d202230223b0a7d&gt;</p>
+</blockquote>
+<p>接收到凭证后,需要对这个字符串进行解码处理后才能提交到苹果服务器校验.
+解码步骤如下:
+1.把前后尖括号去掉
+2.遍历整个字符串，两两取出字符
+3.对两个字符转换成byte，接着把byte转换为char
+4.拼接char字符到字符串中
+5.把拼接好的字符串转换成byte数组
+6.byte数组转换为base64位的字符串
+7.创建一个json格式：key为receipt-data，value为base64位字符串
+8.Post数据到苹果订单验证地址</p>
+<h3>python实现</h3>
+<hr />
+<div class="highlight"><pre>   <span class="s-Atom">def</span> <span class="nf">decodeOrder</span><span class="p">(</span><span class="s-Atom">self</span><span class="p">,</span> <span class="s-Atom">orderStr</span><span class="p">)</span><span class="s-Atom">:</span>
+        <span class="s-Atom">orderStr</span> <span class="o">=</span> <span class="s-Atom">orderStr</span><span class="p">[</span><span class="m">1</span><span class="p">:-</span><span class="m">1</span><span class="p">]</span> <span class="s-Atom">#</span> <span class="s-Atom">去掉两头方括号</span>
+        <span class="s-Atom">#</span> <span class="s-Atom">每2个字符构成一个hex数字</span><span class="p">,</span><span class="s-Atom">将hex值转为chr</span><span class="p">,</span><span class="s-Atom">拼接到真正的order中</span>
+        <span class="s-Atom">realOrderJsonStr</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="s-Atom">for</span> <span class="s-Atom">i</span> <span class="s-Atom">in</span> <span class="nf">xrange</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="nf">len</span><span class="p">(</span><span class="s-Atom">orderStr</span><span class="p">)</span> <span class="o">-</span> <span class="m">1</span><span class="p">)</span><span class="s-Atom">:</span>
+            <span class="s-Atom">if</span> <span class="s-Atom">i</span> <span class="c1">% 2 == 0:</span>
+                <span class="s-Atom">realOrderJsonStr</span> <span class="s-Atom">+=</span> <span class="nf">chr</span><span class="p">(</span><span class="nf">int</span><span class="p">(</span><span class="s-Atom">orderStr</span><span class="p">[</span><span class="nn">i</span><span class="p">:</span><span class="s-Atom">i</span> <span class="o">+</span> <span class="m">2</span><span class="p">],</span> <span class="m">16</span><span class="p">))</span>
+        <span class="s-Atom">#</span> <span class="s-Atom">进行Base64编码</span>
+        <span class="s-Atom">realOrderJsonStr</span> <span class="o">=</span> <span class="s-Atom">base64</span><span class="p">.</span><span class="nf">urlsafe_b64encode</span><span class="p">(</span><span class="s-Atom">realOrderJsonStr</span><span class="p">)</span>
+        <span class="s-Atom">orderDict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;receipt-data&quot;</span><span class="s-Atom">:</span> <span class="s-Atom">realOrderJsonStr</span><span class="p">}</span>
+        <span class="s-Atom">return</span> <span class="s-Atom">json</span><span class="p">.</span><span class="nf">dumps</span><span class="p">(</span><span class="s-Atom">orderDict</span><span class="p">)</span>
+</pre></div>
+
+
+<p>将上面的凭证例子解码后就成为下面这个字符串:</p>
+<blockquote>
+<p>ewoJInNpZ25hdHVyZSIgPSAiQXE3V2xZQUNxalk3TU5sWTVSK0h1M21sdlNEUXRSQjNTbXNOT2FsWElvQ1RaK3JYM05xWExUSnFOUzBuQ3Axd083VWZ5MlE2Y0hiK2h0eVY4Z1BUN1IyTnFVS2pkcG9nYmp2ZG5CMUtpWmRPVGhtODlEckE1a2w3bWFaVjRKcFlyaEVmQTNUZzVRU201TE9lYUllbVN0NmtsbndzSHMvMlhCR1p2ZS9IMEsyZkFBQURWekNDQTFNd2dnSTdvQU1DQVFJQ0NHVVVrVTNaV0FTMU1BMEdDU3FHU0liM0RRRUJCUVVBTUg4eEN6QUpCZ05WQkFZVEFsVlRNUk13RVFZRFZRUUtEQXBCY0hCc1pTQkpibU11TVNZd0pBWURWUVFMREIxQmNIQnNaU0JEWlhKMGFXWnBZMkYwYVc5dUlFRjFkR2h2Y21sMGVURXpNREVHQTFVRUF3d3FRWEJ3YkdVZ2FWUjFibVZ6SUZOMGIzSmxJRU5sY25ScFptbGpZWFJwYjI0Z1FYVjBhRzl5YVhSNU1CNFhEVEE1TURZeE5USXlNRFUxTmxvWERURTBNRFl4TkRJeU1EVTFObG93WkRFak1DRUdBMVVFQXd3YVVIVnlZMmhoYzJWU1pXTmxhWEIwUTJWeWRHbG1hV05oZEdVeEd6QVpCZ05WQkFzTUVrRndjR3hsSUdsVWRXNWxjeUJUZEc5eVpURVRNQkVHQTFVRUNnd0tRWEJ3YkdVZ1NXNWpMakVMTUFrR0ExVUVCaE1DVlZNd2daOHdEUVlKS29aSWh2Y05BUUVCQlFBRGdZMEFNSUdKQW9HQkFNclJqRjJjdDRJclNkaVRDaGFJMGc4cHd2L2NtSHM4cC9Sd1YvcnQvOTFYS1ZoTmw0WElCaW1LalFRTmZnSHNEczZ5anUrK0RyS0pFN3VLc3BoTWRkS1lmRkU1ckdYc0FkQkVqQndSSXhleFRldngzSExFRkdBdDFtb0t4NTA5ZGh4dGlJZERnSnYyWWFWczQ5QjB1SnZOZHk2U01xTk5MSHNETHpEUzlvWkhBZ01CQUFHamNqQndNQXdHQTFVZEV3RUIvd1FDTUFBd0h3WURWUjBqQkJnd0ZvQVVOaDNvNHAyQzBnRVl0VEpyRHRkREM1RllRem93RGdZRFZSMFBBUUgvQkFRREFnZUFNQjBHQTFVZERnUVdCQlNwZzRQeUdVakZQaEpYQ0JUTXphTittVjhrOVRBUUJnb3Foa2lHOTJOa0JnVUJCQUlGQURBTkJna3Foa2lHOXcwQkFRVUZBQU9DQVFFQUVhU2JQanRtTjRDL0lCM1FFcEszMlJ4YWNDRFhkVlhBZVZSZVM1RmFaeGMrdDg4cFFQOTNCaUF4dmRXLzNlVFNNR1k1RmJlQVlMM2V0cVA1Z204d3JGb2pYMGlreVZSU3RRKy9BUTBLRWp0cUIwN2tMczlRVWU4Y3pSOFVHZmRNMUV1bVYvVWd2RGQ0TndOWXhMUU1nNFdUUWZna1FRVnk4R1had1ZIZ2JFL1VDNlk3MDUzcEdYQms1MU5QTTN3b3hoZDNnU1JMdlhqK2xvSHNTdGNURXFlOXBCRHBtRzUrc2s0dHcrR0szR01lRU41LytlMVFUOW5wL0tsMW5qK2FCdzdDMHhzeTBiRm5hQWQxY1NTNnhkb3J5L0NVdk02Z3RLc21uT09kcVRlc2JwMGJzOHNuNldxczBDOWRnY3hSSHVPTVoydG04bnBMVW03YXJnT1N6UT09IjsKCSJwdXJjaGFzZS1pbmZvIiA9ICJld29KSW05eWFXZHBibUZzTFhCMWNtTm9ZWE5sTFdSaGRHVXRjSE4wSWlBOUlDSXlNREV6TFRFd0xUQTRJREEyT2pJM09qQXpJRUZ0WlhKcFkyRXZURzl6WDBGdVoyVnNaWE1pT3dvSkluQjFjbU5vWVhObExXUmhkR1V0YlhNaUlEMGdJakV6T0RFeU16ZzRNak16TlRnaU93b0pJblZ1YVhGMVpTMXBaR1Z1ZEdsbWFXVnlJaUE5SUNJMk1UTTVaRGRtWXpJeE1XWmhORFZpTlRnMk1XUXlNR1l6TkRRME0ySTJZVGMwTURSaVlqTXlJanNLQ1NKdmNtbG5hVzVoYkMxMGNtRnVjMkZqZEdsdmJpMXBaQ0lnUFNBaU5Ua3dNREF3TURNd056SXhNRGsySWpzS0NTSmlkbkp6SWlBOUlDSXhMamN1TVNJN0Nna2lZWEJ3TFdsMFpXMHRhV1FpSUQwZ0lqVTRPRGt3T1RRME9DSTdDZ2tpZEhKaGJuTmhZM1JwYjI0dGFXUWlJRDBnSWpVNU1EQXdNREF6TURjeU1UQTVOaUk3Q2draWNYVmhiblJwZEhraUlEMGdJakVpT3dvSkltOXlhV2RwYm1Gc0xYQjFjbU5vWVhObExXUmhkR1V0YlhNaUlEMGdJakV6T0RFeU16ZzRNak16TlRnaU93b0pJblZ1YVhGMVpTMTJaVzVrYjNJdGFXUmxiblJwWm1sbGNpSWdQU0FpUXpjMk5EWTVOME10UVRNNE1DMDBSVEJCTFRnM01qWXROME00TURJeE5VUTVORUV6SWpzS0NTSnBkR1Z0TFdsa0lpQTlJQ0kxT0RnNU5ERTRPRFlpT3dvSkluWmxjbk5wYjI0dFpYaDBaWEp1WVd3dGFXUmxiblJwWm1sbGNpSWdQU0FpTVRZME1qUTBOVFFpT3dvSkluQnliMlIxWTNRdGFXUWlJRDBnSW1oMVlXNW5jMmhoYm1kcWFYaHBZVzVuWHpJaU93b0pJbkIxY21Ob1lYTmxMV1JoZEdVaUlEMGdJakl3TVRNdE1UQXRNRGdnTVRNNk1qYzZNRE1nUlhSakwwZE5WQ0k3Q2draWIzSnBaMmx1WVd3dGNIVnlZMmhoYzJVdFpHRjBaU0lnUFNBaU1qQXhNeTB4TUMwd09DQXhNem95Tnpvd015QkZkR012UjAxVUlqc0tDU0ppYVdRaUlEMGdJbU52YlM1eVlXUnBZMkZzTG1oMVlXNW5jMmhoYm1kcWFYaHBZVzVuSWpzS0NTSndkWEpqYUdGelpTMWtZWFJsTFhCemRDSWdQU0FpTWpBeE15MHhNQzB3T0NBd05qb3lOem93TXlCQmJXVnlhV05oTDB4dmMxOUJibWRsYkdWeklqc0tmUT09IjsKCSJwb2QiID0gIjU5IjsKCSJzaWduaW5nLXN0YXR1cyIgPSAiMCI7Cn0=</p>
+</blockquote>
+<p>随后将这个字符串post给苹果的验证服务器即可得到校验结果.
+- 正式订单验证服务器:https://buy.itunes.apple.com/verifyReceipt
+- 沙箱订单验证服务器https://sandbox.itunes.apple.com/verifyReceipt</p>
+<p>如上边的订单经过校验后，可以得到下面的json结果:</p>
+<div class="highlight"><pre><span class="p">{</span>
+    <span class="s">&quot;status&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s">&quot;receipt&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s">&quot;purchase_date_pst&quot;</span><span class="o">:</span> <span class="s">&quot;2013-10-08 06:27:03 America/Los_Angeles&quot;</span><span class="p">,</span>
+        <span class="s">&quot;product_id&quot;</span><span class="o">:</span> <span class="s">&quot;huangshangjixiang_2&quot;</span><span class="p">,</span>
+        <span class="s">&quot;original_transaction_id&quot;</span><span class="o">:</span> <span class="s">&quot;590000030721096&quot;</span><span class="p">,</span>
+        <span class="s">&quot;unique_identifier&quot;</span><span class="o">:</span> <span class="s">&quot;6139d7fc211fa45b5861d20f34443b6a7404bb32&quot;</span><span class="p">,</span>
+        <span class="s">&quot;original_purchase_date_pst&quot;</span><span class="o">:</span> <span class="s">&quot;2013-10-08 06:27:03 America/Los_Angeles&quot;</span><span class="p">,</span>
+        <span class="s">&quot;version_external_identifier&quot;</span><span class="o">:</span> <span class="s">&quot;16424454&quot;</span><span class="p">,</span>
+        <span class="s">&quot;app_item_id&quot;</span><span class="o">:</span> <span class="s">&quot;588909448&quot;</span><span class="p">,</span>
+        <span class="s">&quot;original_purchase_date&quot;</span><span class="o">:</span> <span class="s">&quot;2013-10-08 13:27:03 Etc/GMT&quot;</span><span class="p">,</span>
+        <span class="s">&quot;unique_vendor_identifier&quot;</span><span class="o">:</span> <span class="s">&quot;C764697C-A380-4E0A-8726-7C80215D94A3&quot;</span><span class="p">,</span>
+        <span class="s">&quot;bvrs&quot;</span><span class="o">:</span> <span class="s">&quot;1.7.1&quot;</span><span class="p">,</span>
+        <span class="s">&quot;original_purchase_date_ms&quot;</span><span class="o">:</span> <span class="s">&quot;1381238823358&quot;</span><span class="p">,</span>
+        <span class="s">&quot;purchase_date&quot;</span><span class="o">:</span> <span class="s">&quot;2013-10-08 13:27:03 Etc/GMT&quot;</span><span class="p">,</span>
+        <span class="s">&quot;item_id&quot;</span><span class="o">:</span> <span class="s">&quot;588941886&quot;</span><span class="p">,</span>
+        <span class="s">&quot;purchase_date_ms&quot;</span><span class="o">:</span> <span class="s">&quot;1381238823358&quot;</span><span class="p">,</span>
+        <span class="s">&quot;bid&quot;</span><span class="o">:</span> <span class="s">&quot;com.radical.huangshangjixiang&quot;</span><span class="p">,</span>
+        <span class="s">&quot;transaction_id&quot;</span><span class="o">:</span> <span class="s">&quot;590000030721096&quot;</span><span class="p">,</span>
+        <span class="s">&quot;quantity&quot;</span><span class="o">:</span> <span class="s">&quot;1&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3>关于凭证</h3>
+<hr />
+<p>从客户端上传的凭证，有几点需要补充下的:
+- 将解析后的凭证进行Base64解码之后，可以得到类似"{key1=value1; key2=value2}"的数据，将其中key=？？？？？的数据再进行Base64解码之后可以得到这次购买的一些数据。如产品标识，购买时间等;
+- 客户端上传的最开始的凭证可以进行多次验证，因此需要服务端需要保存该凭证，防止同一凭证多次请求</p>
+<hr />
+<h4>参考</h4>
+<blockquote>
+<p>[官方文档]Receipt Validation Programming Guide https://developer.apple.com/library/ios/releasenotes/General/ValidateAppStoreReceipt/Chapters/ValidateRemotely.html
+在Corona中如何对apple store的iap订单进行服务器二次验证 http://www.buildapp.net/post/188.htm</p>
+</blockquote>
+                </div><!-- /.entry-content -->
+                <div class="comments">
+                <h2>Comments !</h2>
+                        <div id="disqus_thread"></div>
+                        <script type="text/javascript">
+                           var disqus_identifier = "appstore-iap-second-verify.html";
+                           (function() {
+                                var dsq = document.createElement('script');
+                                dsq.type = 'text/javascript'; dsq.async = true;
+                                dsq.src = 'http://wwwbaijinpingcom.disqus.com/embed.js';
+                                (document.getElementsByTagName('head')[0] ||
+                                 document.getElementsByTagName('body')[0]).appendChild(dsq);
+                          })();
+                        </script>
+                </div>
+        </article>
+</section>
+        </div><!--/span-->
+
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+<li class="nav-header"><h4><i class="icon-external-link"></i>blogroll</h4></li>
+    <li><a href="http://baikkp.blog.51cto.com/"><i class="icon-external-link"></i>老博客</a></li>
+<li class="nav-header"><h4><i class="icon-home icon-large"></i> social</h4></li>
+<li><a href="./" rel="alternate"><i class="icon-bookmark icon-large"></i>atom feed</a></li>
+    <li><a href="https://github.com/baijinping"><i class="icon-Github-sign icon-large"></i>Github</a></li>
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
+<li>
+<a href="./category/nosql.html">
+    <i class="icon-folder-open icon-large"></i>NoSQL
+</a>
+</li>
+<li>
+<a href="./category/python.html">
+    <i class="icon-folder-open icon-large"></i>Python
+</a>
+</li>
+<li>
+<a href="./category/sheng-huo-za-tan.html">
+    <i class="icon-folder-open icon-large"></i>生活杂谈
+</a>
+</li>
+<li>
+<a href="./category/yi-dong-kai-fa.html">
+    <i class="icon-folder-open icon-large"></i>移动开发
+</a>
+</li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+<li class="tag-4">
+    <a href="./tag/life.html">
+        <i class="icon-tag icon-large"></i>Life
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/memcache.html">
+        <i class="icon-tag icon-large"></i>Memcache
+    </a>
+</li>
+<li class="tag-1">
+    <a href="./tag/python.html">
+        <i class="icon-tag icon-large"></i>python
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/iap.html">
+        <i class="icon-tag icon-large"></i>IAP
+    </a>
+</li>
+
+
+</ul>        </div><!--/.well -->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+	var pageTracker = _gat._getTracker("UA-56594205-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<script type="text/javascript">
+    var disqus_shortname = 'wwwbaijinpingcom';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./theme/js/jquery-1.7.2.min.js"></script>
+    <script src="./theme/js/bootstrap.min.js"></script>
+  </body>
+</html>
