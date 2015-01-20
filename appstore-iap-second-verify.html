@@ -137,14 +137,14 @@
 </blockquote>
 <p>接收到凭证后,需要对这个字符串进行解码处理后才能提交到苹果服务器校验.
 解码步骤如下:
-1.把前后尖括号去掉
-2.遍历整个字符串，两两取出字符
-3.对两个字符转换成byte，接着把byte转换为char
-4.拼接char字符到字符串中
-5.把拼接好的字符串转换成byte数组
-6.byte数组转换为base64位的字符串
-7.创建一个json格式：key为receipt-data，value为base64位字符串
-8.Post数据到苹果订单验证地址</p>
+- 把前后尖括号去掉
+- 遍历整个字符串，两两取出字符
+- 对两个字符转换成byte，接着把byte转换为char
+- 拼接char字符到字符串中
+- 把拼接好的字符串转换成byte数组
+- byte数组转换为base64位的字符串
+- 创建一个json格式：key为receipt-data，value为base64位字符串
+- Post数据到苹果订单验证地址</p>
 <h3>python实现</h3>
 <hr />
 <div class="highlight"><pre>   <span class="s-Atom">def</span> <span class="nf">decodeOrder</span><span class="p">(</span><span class="s-Atom">self</span><span class="p">,</span> <span class="s-Atom">orderStr</span><span class="p">)</span><span class="s-Atom">:</span>
@@ -255,6 +255,16 @@
 </li>
 
 <li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+<li class="tag-1">
+    <a href="./tag/python.html">
+        <i class="icon-tag icon-large"></i>python
+    </a>
+</li>
+<li class="tag-4">
+    <a href="./tag/life.html">
+        <i class="icon-tag icon-large"></i>Life
+    </a>
+</li>
 <li class="tag-4">
     <a href="./tag/iap.html">
         <i class="icon-tag icon-large"></i>IAP
@@ -263,16 +273,6 @@
 <li class="tag-4">
     <a href="./tag/memcache.html">
         <i class="icon-tag icon-large"></i>Memcache
-    </a>
-</li>
-<li class="tag-4">
-    <a href="./tag/life.html">
-        <i class="icon-tag icon-large"></i>Life
-    </a>
-</li>
-<li class="tag-1">
-    <a href="./tag/python.html">
-        <i class="icon-tag icon-large"></i>python
     </a>
 </li>
 
