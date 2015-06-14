@@ -6,7 +6,6 @@ Slug:appstore-iap-second-verify
 Author:baijinping
 Summary:当iOS应用进行IAP付费后(客户端与AppStore通信),AppStore会返回支付凭证给客户端.为了防止恶意破解,实际生产中通常需要对该次支付进行二次验证.
 
-##对appstore的IAP订单进行服务端的二次验证
 
 当iOS应用进行IAP付费后(客户端与AppStore通信),AppStore会返回支付凭证给客户端.为了防止恶意破解,实际生产中通常需要对该次支付进行二次验证.
 
