@@ -10,7 +10,7 @@
 
 
 
-<link rel="canonical" href="www.baijinping.com/pages/2014/11/16/python-error-permission-denied.html">
+<link rel="canonical" href="../../../../pages/2014/11/16/python-error-permission-denied.html">
 
         <meta name="author" content="baijinping" />
         <meta name="keywords" content="Python" />
@@ -19,7 +19,7 @@
         <meta property="og:site_name" content="baijinping's world" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="Python(Errno13)PYTHON_EGG_CACHE设置"/>
-        <meta property="og:url" content="www.baijinping.com/pages/2014/11/16/python-error-permission-denied.html"/>
+        <meta property="og:url" content="../../../../pages/2014/11/16/python-error-permission-denied.html"/>
         <meta property="og:description" content="Error Information 这次由我重新设计网站目录结构,并重新安装时,出现了如下异常: Can&#39;t extract file(s) to egg cache The following error occurred while trying to extract file(s) to the Python egg cache: [Errno 13] Permission denied: &#39;/usr/share/httpd/.python-eggs&#39; The Python egg cache directory is currently set to: /usr/share/httpd/.python-eggs Perhaps your account does not have write access to this directory? You can change the cache directory by setting the PYTHON_EGG_CACHE environment variable to point to an accessible directory. Environment CentOS 7 Python 2.7.5 Apache 2.4.6 + module_wsgi web.py Analyse 如果某个Python库在安装后没有解压,以压缩包的形式存在于site-package/等Python库目录下,那么在这些库被引用时,将被解压到某个临时目录，python则直接引用这个临时目录下的库文件。 那出现权限异常的原因就出来了，python没用足够权限访问（w+r）存放临时文件的目录。 根据我自身的情况，是其实这个目录并不存在。 Solution 在/usr/share/httpd/目录下创建.python-eggs目录,将该目录的权限设为777.重新访问即可。 Reference http://blog.csdn.net/imzkz/article/details/5568585 http://code.google.com/p/modwsgi/wiki/ApplicationIssues#Access_Rights_Of_Apache_User"/>
         <meta property="article:published_time" content="2014-11-16" />
             <meta property="article:section" content="Tech" />
@@ -28,12 +28,12 @@
 
 
     <!-- Bootstrap -->
-        <link rel="stylesheet" href="www.baijinping.com/theme/css/bootstrap.min.css" type="text/css"/>
-    <link href="www.baijinping.com/theme/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../../../theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="../../../../theme/css/font-awesome.min.css" rel="stylesheet">
 
-    <link href="www.baijinping.com/theme/css/pygments/native.css" rel="stylesheet">
-        <link href="www.baijinping.com/theme/css/typogrify.css" rel="stylesheet">
-    <link rel="stylesheet" href="www.baijinping.com/theme/css/style.css" type="text/css"/>
+    <link href="../../../../theme/css/pygments/native.css" rel="stylesheet">
+        <link href="../../../../theme/css/typogrify.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../theme/css/style.css" type="text/css"/>
 
 
 </head>
@@ -48,23 +48,23 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="www.baijinping.com/" class="navbar-brand">
+            <a href="../../../../" class="navbar-brand">
 baijinping's world            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                         <li><a href="www.baijinping.com/pages/about.html">
+                         <li><a href="../../../../pages/about.html">
                              About
                           </a></li>
                         <li >
-                            <a href="www.baijinping.com/category/life.html">Life</a>
+                            <a href="../../../../category/life.html">Life</a>
                         </li>
                         <li class="active">
-                            <a href="www.baijinping.com/category/tech.html">Tech</a>
+                            <a href="../../../../category/tech.html">Tech</a>
                         </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="www.baijinping.com/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+              <li><a href="../../../../archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -80,7 +80,7 @@ baijinping's world            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="www.baijinping.com/pages/2014/11/16/python-error-permission-denied.html"
+                    <a href="../../../../pages/2014/11/16/python-error-permission-denied.html"
                        rel="bookmark"
                        title="Permalink to Python(Errno13)PYTHON_EGG_CACHE设置">
                         Python(Errno13)PYTHON_EGG_CACHE设置
@@ -99,7 +99,7 @@ baijinping's world            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="www.baijinping.com/tag/python.html">Python</a>
+	<a href="../../../../tag/python.html">Python</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
@@ -137,7 +137,7 @@ baijinping's world            </a>
             var disqus_shortname = 'wwwbaijinpingcom'; // required: replace example with your forum shortname
 
                     var disqus_identifier = 'python-error-permission-denied';
-                var disqus_url = 'www.baijinping.com/pages/2014/11/16/python-error-permission-denied.html';
+                var disqus_url = '../../../../pages/2014/11/16/python-error-permission-denied.html';
 
             var disqus_config = function () {
                 this.language = "cn";
@@ -174,26 +174,26 @@ baijinping's world            </a>
 
 
 
-            <li class="list-group-item"><a href="www.baijinping.com/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+            <li class="list-group-item"><a href="../../../../"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group " id="tags">
                     <li class="list-group-item tag-1">
-                        <a href="www.baijinping.com/tag/python.html">
+                        <a href="../../../../tag/python.html">
                             Python
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="www.baijinping.com/tag/nosql.html">
-                            NoSQL
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="www.baijinping.com/tag/yi-dong-kai-fa.html">
+                        <a href="../../../../tag/yi-dong-kai-fa.html">
                             移动开发
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="www.baijinping.com/tag/life.html">
+                        <a href="../../../../tag/life.html">
                             Life
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="../../../../tag/nosql.html">
+                            NoSQL
                         </a>
                     </li>
                 </ul>
@@ -240,13 +240,13 @@ baijinping's world            </a>
       </div>
    </div>
 </footer>
-<script src="www.baijinping.com/theme/js/jquery.min.js"></script>
+<script src="../../../../theme/js/jquery.min.js"></script>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="www.baijinping.com/theme/js/bootstrap.min.js"></script>
+<script src="../../../../theme/js/bootstrap.min.js"></script>
 
 <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
-<script src="www.baijinping.com/theme/js/respond.min.js"></script>
+<script src="../../../../theme/js/respond.min.js"></script>
 
     <!-- Disqus -->
     <script type="text/javascript">

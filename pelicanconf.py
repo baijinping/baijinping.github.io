@@ -49,7 +49,7 @@ SOCIAL = (('Github', 'https://github.com/baijinping'),)
 DEFAULT_PAGINATION = 10
 
 # Uncomment following line if you want document-relative URLs when developing
-# RELATIVE_URLS = True
+RELATIVE_URLS = True
 
 # 生成时是否使用先前缓存的数据
 LOAD_CONTENT_CACHE = False
