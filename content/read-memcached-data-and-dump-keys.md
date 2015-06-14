@@ -4,7 +4,6 @@ Category:Tech
 Tags:NoSQL
 Slug:read-memcached-data-and-dump-keys
 
-##实时查看memcache中的数据
 
 ---
 
