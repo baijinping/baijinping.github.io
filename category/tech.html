@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="cn"
+>
+<head>
+    <title>Tech - baijinping's world</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+
+    <meta name="author" content="baijinping" />
+    <meta name="keywords" content="Tech" />
+
+    <!-- Open Graph tags -->
+        <meta property="og:site_name" content="baijinping's world" />
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="baijinping's world"/>
+        <meta property="og:url" content="www.baijinping.com"/>
+        <meta property="og:description" content="baijinping's world"/>
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="www.baijinping.com/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="www.baijinping.com/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="www.baijinping.com/theme/css/pygments/native.css" rel="stylesheet">
+        <link href="www.baijinping.com/theme/css/typogrify.css" rel="stylesheet">
+    <link rel="stylesheet" href="www.baijinping.com/theme/css/style.css" type="text/css"/>
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="www.baijinping.com/" class="navbar-brand">
+baijinping's world            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                         <li><a href="www.baijinping.com/pages/about.html">
+                             About
+                          </a></li>
+                        <li >
+                            <a href="www.baijinping.com/category/life.html">Life</a>
+                        </li>
+                        <li class="active">
+                            <a href="www.baijinping.com/category/tech.html">Tech</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="www.baijinping.com/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+
+            <article>
+                <h2><a href="www.baijinping.com/pages/2015/01/20/appstore-iap-second-verify.html">对appstore的<span class="caps">IAP</span>订单进行服务端的二次验证</a></h2>
+                <div class="summary"><p>当iOS应用进行<span class="caps">IAP</span>付费后(客户端与AppStore通信),AppStore会返回支付凭证给客户端.为了防止恶意破解,实际生产中通常需要对该次支付进行二次验证.</p>
+                    <a class="btn btn-default btn-xs" href="www.baijinping.com/pages/2015/01/20/appstore-iap-second-verify.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="www.baijinping.com/pages/2014/12/12/read-memcached-data-and-dump-keys.html">实时查看memcache中的数据</a></h2>
+                <div class="summary"><h2>实时查看memcache中的数据</h2>
+<hr />
+<h4>memcache命令</h4>
+<p>可用telnet与memcache进行通信：</p>
+<p><code>telnet {:hostname} {:port}</code></p>
+<p>memcache的通信协议是简单文本行。使用get&nbsp;key可以查看对应key的值。</p>
+<p>memcache中查看数据时常用的命令：</p>
+<ul>
+<li><code>stats</code> 查看状态信息</li>
+<li><code>stats items</code> 列出每个slabs的简要信息</li>
+<li><code>stats slabs</code> 列出每个slabs的详细信息</li>
+<li><code>stats cachedump {:slabNo} {:rowNo}</code> 列出rowNo个位于指定slabNo的记录的key，如果rowNo为0，表示列出所有</li>
+<li><code>get {:key}</code> 获取指定key的数据</li>
+</ul>
+<hr />
+<h4>关于获取memcache的所有key</h4>
+<p>我在网上专门查找过关于“获取及遍历memcache的所有key”这一问题的解决方案，但无一例外都是使用<code>stats cachedump</code>命令来获取的。这个简单易懂命令很容易让人忽略一个事实，那就是cachedump能获取到的内容的大小是有上限的，cache的大小是2M。</p>
+<p>这意味着你无法确保cachedump能够将所有key导出。&nbsp;当然，这比没有要好多了。</p>
+<hr />
+<h4>参考</h4>
+<ul>
+<li><a href="http://lzone.de/cheat-sheet/memcached#Dumping Memcache Keys">http://lzone.de/cheat-sheet/memcached#Dumping Memcache&nbsp;Keys</a></li>
+<li><a href="http://lists.danga.com/pipermail/memcached/2007-April/003905.html">http://lists.danga.com/pipermail/memcached/2007-April/003905.html</a></li>
+<li><a href="https://groups.google.com/forum/#!searchin/memcached/cachedump/memcached/UfCPP-yjvDU/RbD0K59VCykJ">https://groups.google.com/forum/#!searchin/memcached/cachedump/memcached/UfCPP-yjvDU/RbD0K59VCykJ</a></li>
+</ul>
+                    <a class="btn btn-default btn-xs" href="www.baijinping.com/pages/2014/12/12/read-memcached-data-and-dump-keys.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="www.baijinping.com/pages/2014/11/16/python-error-permission-denied.html">Python(Errno13)PYTHON_EGG_CACHE设置</a></h2>
+                <div class="summary"><h1>Error&nbsp;Information</h1>
+<p>这次由我重新设计网站目录结构,并重新安装时,出现了如下异常:</p>
+<p><code>Can't extract file(s) to egg cache The following error occurred while trying to extract file(s) to the Python egg cache: [Errno 13] Permission denied: '/usr/share/httpd/.python-eggs' The Python egg cache directory is currently set to: /usr/share/httpd/.python-eggs Perhaps your account does not have write access to this directory? You can change the cache directory by setting the PYTHON_EGG_CACHE environment variable to point to an accessible directory.</code></p>
+<hr />
+<h1>Environment</h1>
+<ul>
+<li>CentOS&nbsp;7</li>
+<li>Python&nbsp;2.7.5</li>
+<li>Apache 2.4.6 +&nbsp;module_wsgi</li>
+<li>web.py</li>
+</ul>
+<hr />
+<h1>Analyse</h1>
+<p>如果某个Python库在安装后没有解压,以压缩包的形式存在于site-package/等Python库目录下,那么在这些库被引用时,将被解压到某个临时目录，python则直接引用这个临时目录下的库文件。
+那出现权限异常的原因就出来了，python没用足够权限访问（w+r）存放临时文件的目录。&nbsp;根据我自身的情况，是其实这个目录并不存在。</p>
+<h1>Solution</h1>
+<p>在/usr/share/httpd/目录下创建.python-eggs目录,将该目录的权限设为777.重新访问即可。</p>
+<h1>Reference</h1>
+<ul>
+<li><a href="http://blog.csdn.net/imzkz/article/details/5568585">http://blog.csdn.net/imzkz/article/details/5568585</a></li>
+<li><a href="http://code.google.com/p/modwsgi/wiki/ApplicationIssues#Access_Rights_Of_Apache_User">http://code.google.com/p/modwsgi/wiki/ApplicationIssues#Access_Rights_Of_Apache_User</a></li>
+</ul>
+                    <a class="btn btn-default btn-xs" href="www.baijinping.com/pages/2014/11/16/python-error-permission-denied.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="www.baijinping.com/pages/2014/11/16/python-change-file-line.html">python超简约替换文件字符串</a></h2>
+                <div class="summary"><p>python-文件字符串替换（超简约）</p>
+                    <a class="btn btn-default btn-xs" href="www.baijinping.com/pages/2014/11/16/python-change-file-line.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="https://github.com/baijinping"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
+              </ul>
+            </li>
+
+
+
+            <li class="list-group-item"><a href="www.baijinping.com/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                <ul class="list-group " id="tags">
+                    <li class="list-group-item tag-1">
+                        <a href="www.baijinping.com/tag/python.html">
+                            Python
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="www.baijinping.com/tag/nosql.html">
+                            NoSQL
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="www.baijinping.com/tag/yi-dong-kai-fa.html">
+                            移动开发
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="www.baijinping.com/tag/life.html">
+                            Life
+                        </a>
+                    </li>
+                </ul>
+            </li>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://baikkp.blog.51cto.com/" target="_blank">
+                老博客
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://getpelican.com/" target="_blank">
+                Pelican
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://jinja.pocoo.org/" target="_blank">
+                Jinja2
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2015 baijinping
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="www.baijinping.com/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="www.baijinping.com/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="www.baijinping.com/theme/js/respond.min.js"></script>
+
+    <!-- Disqus -->
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'wwwbaijinpingcom'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script');
+            s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+    <!-- End Disqus Code -->
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-56594205-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <!-- End Google Analytics Code -->
+
+</body>
+</html>
