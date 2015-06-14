@@ -10,11 +10,8 @@ TIMEZONE = 'Asia/Shanghai'
 DEFAULT_LANG = u'zh'
 DEFAULT_DATE_FORMAT = '%Y-%m-%d %a'
 
-# https://github.com/ir193/Responsive-Pelican
-# THEME = 'F:\GitSpace\Responsive-Pelican'
-
+# https://github.com/hdra/pelican-cait
 THEME = 'F:\GitSpace\pelican-cait'
-
 
 PATH = 'content'
 OUTPUT_PATH = ''
