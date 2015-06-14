@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.baijinping.com/</loc>
-<lastmod>2015-06-14T21:43:49-00:00</lastmod>
+<lastmod>2015-06-14T22:08:43-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.baijinping.com/archives.html</loc>
-<lastmod>2015-06-14T21:43:49-00:00</lastmod>
+<lastmod>2015-06-14T22:08:43-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.baijinping.com/tags.html</loc>
-<lastmod>2015-06-14T21:43:49-00:00</lastmod>
+<lastmod>2015-06-14T22:08:43-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.baijinping.com/categories.html</loc>
-<lastmod>2015-06-14T21:43:49-00:00</lastmod>
+<lastmod>2015-06-14T22:08:43-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -35,42 +35,42 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <loc>http://www.baijinping.com/pages/about.html</loc>
 <lastmod>2015-06-13T10:21:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
-<priority>0.5</priority>
+<priority>0.3</priority>
 </url>
 
 <url>
 <loc>http://www.baijinping.com/pages/2015/01/20/appstore-iap-second-verify.html</loc>
 <lastmod>2015-01-20T23:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
-<priority>0.5</priority>
+<priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://www.baijinping.com/pages/2014/12/12/read-memcached-data-and-dump-keys.html</loc>
 <lastmod>2014-12-12T14:30:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
-<priority>0.5</priority>
+<priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://www.baijinping.com/pages/2014/11/16/python-error-permission-denied.html</loc>
 <lastmod>2014-11-16T11:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
-<priority>0.5</priority>
+<priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://www.baijinping.com/pages/2014/11/16/python-change-file-line.html</loc>
 <lastmod>2014-11-16T10:05:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
-<priority>0.5</priority>
+<priority>0.7</priority>
 </url>
 
 <url>
 <loc>http://www.baijinping.com/pages/2014/11/07/first_blog.html</loc>
 <lastmod>2014-11-07T22:58:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
-<priority>0.5</priority>
+<priority>0.7</priority>
 </url>
 
 <url>

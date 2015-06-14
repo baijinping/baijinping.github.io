@@ -11,7 +11,9 @@ DEFAULT_LANG = u'zh'
 DEFAULT_DATE_FORMAT = '%Y-%m-%d %a'
 
 # https://github.com/ir193/Responsive-Pelican
-THEME = 'F:\GitSpace\Responsive-Pelican'
+# THEME = 'F:\GitSpace\Responsive-Pelican'
+
+THEME = 'F:\GitSpace\pelican-cait'
 
 
 PATH = 'content'
@@ -42,9 +44,9 @@ PLUGINS = ['sitemap']
 SITEMAP = {
     'format': 'xml',
     'priorities': {
-        'articles': 0.5,
+        'articles': 0.7,
         'indexes': 0.5,
-        'pages': 0.5
+        'pages': 0.3
     },
     'changefreqs': {
         'articles': 'monthly',
@@ -56,13 +58,12 @@ SITEMAP = {
 # Blogroll
 LINKS = (('老博客', 'http://baikkp.blog.51cto.com/'),
 	('Pelican', 'http://getpelican.com/'),
-         ('Python.org', 'http://python.org/'),
-         ('Jinja2', 'http://jinja.pocoo.org/'),)
+         ('Python.org', 'http://python.org/'),)
 
 # Social widget
 SOCIAL = (('Github', 'https://github.com/baijinping'),)
 
-DEFAULT_PAGINATION = 10
+DEFAULT_PAGINATION = 5
 
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True
@@ -74,7 +75,7 @@ LOAD_CONTENT_CACHE = False
 # DISPLAY_PAGES_ON_MENU = True
 
 # 是否将文章的分类放到菜单栏
-# DISPLAY_CATEGORIES_ON_MENU = True
+DISPLAY_CATEGORIES_ON_MENU = True
 
 # 是否使用typogrify库进一步修饰html标签
 TYPOGRIFY = True
