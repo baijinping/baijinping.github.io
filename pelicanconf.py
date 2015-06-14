@@ -32,10 +32,27 @@ TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
-# Plugins
+# Third party
 GITHUB_URL = 'https://github.com/baijinping'
 GOOGLE_ANALYTICS = 'UA-56594205-1'
 DISQUS_SITENAME = 'wwwbaijinpingcom'
+
+# Plugins
+PLUGIN_PATHS = ['F:\GitSpace\pelican-plugins']
+PLUGINS = ['sitemap']
+SITEMAP = {
+    'format': 'xml',
+    'priorities': {
+        'articles': 0.5,
+        'indexes': 0.5,
+        'pages': 0.5
+    },
+    'changefreqs': {
+        'articles': 'monthly',
+        'indexes': 'daily',
+        'pages': 'monthly'
+    }
+}
 
 # Blogroll
 LINKS = (('老博客', 'http://baikkp.blog.51cto.com/'),
