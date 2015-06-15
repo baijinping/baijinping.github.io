@@ -60,18 +60,30 @@
 <hr />
 <div class="toc">
 <ul>
-<li><a href="#pelican">安装Pelican</a></li>
-<li><a href="#_1">快速开始</a></li>
-<li><a href="#pelican_1">Pelican配置简介</a></li>
-<li><a href="#_2">开始编写文章</a></li>
-<li><a href="#_3">文章中的链接</a></li>
-<li><a href="#_4">设置主题</a></li>
-<li><a href="#pelican_2">Pelican的缓存机制</a></li>
-<li><a href="#pelican_3">Pelican插件简介</a></li>
-<li><a href="#pelican_4">Pelican配置项详细说明</a></li>
+<li><a href="#pelican">一、安装Pelican</a></li>
+<li><a href="#_1">二、快速开始</a></li>
+<li><a href="#pelican_1">三、Pelican配置简介</a></li>
+<li><a href="#_2">四、开始编写文章</a><ul>
+<li><a href="#articles">Articles</a></li>
+<li><a href="#pages">Pages</a></li>
+<li><a href="#file-metadata">文章元数据(File Metadata)追加内容</a></li>
+</ul>
+</li>
+<li><a href="#_3">五、文章中的链接</a><ul>
+<li><a href="#filename-">filename链接-指向其他文章</a></li>
+<li><a href="#filename-_1">filename链接-指向资源文件</a></li>
+<li><a href="#attach-">attach链接-附件链接</a></li>
+<li><a href="#tagcategory-">tag链接和category链接-指向标签页和分类页</a></li>
+<li><a href="#-">向后兼容-|竖线|</a></li>
+</ul>
+</li>
+<li><a href="#_4">六、设置主题</a></li>
+<li><a href="#pelican_2">七、Pelican的缓存机制</a></li>
+<li><a href="#pelican_3">八、Pelican插件简介</a></li>
+<li><a href="#pelican_4">九、Pelican配置项详细说明</a></li>
 </ul>
 </div>
-<h2 id="pelican">安装Pelican</h2>
+<h2 id="pelican">一、安装Pelican</h2>
 <p>使用pip或者easy_install都可以。要下载最新的，还是到Pelican的github主页上下载吧：<a href="https://github.com/getpelican">https://github.com/getpelican</a></p>
 <p>安装过程中，还有一大堆的python库会依赖下载：</p>
 <ul>
@@ -87,7 +99,7 @@
 <li><strong>python-dateutil</strong>, to read the date metadata</li>
 </ul>
 <hr />
-<h2 id="_1">快速开始</h2>
+<h2 id="_1">二、快速开始</h2>
 <p>安装完Pelican之后，可以在终端命令中找到<code>pelican-quickstart</code>。假设当前的目录是/home/mysite/，在该目录下运行<code>pelican-quickstart</code>命令，在经过n个询问的问题之后（也可以直接用默认的），Pelican就开始创建生成静态页面所需的文件了。
     生成后的目录树如下：
     <img alt="生成后的目录树" src="../../../../pages/2015/06/15/images/pelican-quickstart-filetree.png" /></p>
@@ -109,19 +121,178 @@
 <p>访问<a href="http://localhost:8000/">http://localhost:8000/</a>就可以看到生成好的网站了！
     <img alt="生成后的页面快照" src="../../../../pages/2015/06/15/images/pelican-quickstart-screenshot.png" /></p>
 <hr />
-<h2 id="pelican_1">Pelican配置简介</h2>
+<h2 id="pelican_1">三、Pelican配置简介</h2>
+<p>在前边生成的文件目录下，有两个配置文件pelicanconf.py和publishconf.py。其中主要是<strong>pelicanconf.py</strong>。可以这么认为，Pelican中可配置的值大部分已经有默认值，而用户可以在pelicanconf.py中对配置进行修改从而覆盖原来的值。</p>
+<p><strong>推荐在pelicanconf.py中配置绝大部分的配置项，在需要发布时，将发布版本的配置放到publishconf.py中</strong>（如生成发布版本时才需要SITEURL，DISQUS_SITENAME之类的配置）。publishconf.py的配置在生成发布版本时会覆盖掉pelicanconf.py中的相应配置。</p>
 <hr />
-<h2 id="_2">开始编写文章</h2>
+<h2 id="_2">四、开始编写文章</h2>
+<p>Pelican中使用‘<strong>articles</strong>’表示每一篇文章，每篇文章都会有自己的发布日期。‘articles’是易变的，经常会编辑的内容。
+而‘<strong>pages</strong>’则表示不经常编辑改变的内容，如‘About’页，‘Contact’页。</p>
+<p><strong>每种形式的文章都在某些特定的地方（通常是头部）提供文章的元数据</strong>，如标题（title），发布日期（date），更新日期（modified），分类（category），标签（tags）等。</p>
+<h3 id="articles">Articles</h3>
+<p>Pelican中支持多种格式的源文章。包括reStructuredText格式（.rst后缀），Markdown格式等（.md,.markdown,.mkd,.mdown后缀都行），甚至包括Html格式（.html,.htm）。还有更多格式可以通过Pelican插件<a href="http://github.com/getpelican/pelican-plugins">http://github.com/getpelican/pelican-plugins</a>进行添加。</p>
+<p>下面是几种常用格式的范例文章：
+* reStructuredText:</p>
+<div class="highlight"><pre>    My super title
+    ##############
+
+    <span class="nc">:date:</span> <span class="nf">2010-10-03 10:20</span>
+    :modified: 2010-10-04 18:40
+    <span class="nc">:tags:</span> <span class="nf">thats, awesome</span>
+    <span class="nc">:category:</span> <span class="nf">yeah</span>
+    <span class="nc">:slug:</span> <span class="nf">my-super-post</span>
+    <span class="nc">:authors:</span> <span class="nf">Alexis Metaireau, Conan Doyle</span>
+    <span class="nc">:summary:</span> <span class="nf">Short version for index and feeds</span>
+</pre></div>
+
+
+<ul>
+<li>Markdown:</li>
+</ul>
+<div class="highlight"><pre>    <span class="nl">Title:</span> <span class="n">My</span> <span class="n">super</span> <span class="n">title</span>
+    <span class="nl">Date:</span> <span class="mi">2010</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mo">03</span> <span class="mi">10</span><span class="o">:</span><span class="mi">20</span>
+    <span class="nl">Modified:</span> <span class="mi">2010</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mo">05</span> <span class="mi">19</span><span class="o">:</span><span class="mi">30</span>
+    <span class="nl">Category:</span> <span class="n">Python</span>
+    <span class="nl">Tags:</span> <span class="n">pelican</span><span class="p">,</span> <span class="n">publishing</span>
+    <span class="nl">Slug:</span> <span class="n">my</span><span class="o">-</span><span class="n">super</span><span class="o">-</span><span class="n">post</span>
+    <span class="nl">Authors:</span> <span class="n">Alexis</span> <span class="n">Metaireau</span><span class="p">,</span> <span class="n">Conan</span> <span class="n">Doyle</span>
+    <span class="nl">Summary:</span> <span class="n">Short</span> <span class="n">version</span> <span class="k">for</span> <span class="n">index</span> <span class="n">and</span> <span class="n">feeds</span>
+
+    <span class="n">This</span> <span class="n">is</span> <span class="n">the</span> <span class="n">content</span> <span class="n">of</span> <span class="n">my</span> <span class="n">super</span> <span class="n">blog</span> <span class="n">post</span><span class="p">.</span>
+</pre></div>
+
+
+<ul>
+<li>HTML:</li>
+</ul>
+<div class="highlight"><pre><span class="nt">&lt;html&gt;</span>
+    <span class="nt">&lt;head&gt;</span>
+        <span class="nt">&lt;title&gt;</span>My super title<span class="nt">&lt;/title&gt;</span>
+        <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;tags&quot;</span> <span class="na">content=</span><span class="s">&quot;thats, awesome&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;date&quot;</span> <span class="na">content=</span><span class="s">&quot;2012-07-09 22:28&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;modified&quot;</span> <span class="na">content=</span><span class="s">&quot;2012-07-10 20:14&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;category&quot;</span> <span class="na">content=</span><span class="s">&quot;yeah&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;authors&quot;</span> <span class="na">content=</span><span class="s">&quot;Alexis Métaireau, Conan Doyle&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;summary&quot;</span> <span class="na">content=</span><span class="s">&quot;Short version for index and feeds&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/head&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
+        This is the content of my super blog post.
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+
+
+<h3 id="pages">Pages</h3>
+<p>如果在content目录下创建了pages目录，这个目录下的页面都是用来作为顶部导航栏的静态存在。一般用于About，Contact之类的页面。</p>
+<h3 id="file-metadata">文章元数据(File Metadata)追加内容</h3>
+<ul>
+<li>
+<p>添加<strong>Status:hidden</strong>，<strong>可以在目录中隐藏指向该文章页面的链接</strong>。实测却不知为何，添加该元数据之后，生成该文章时居然报错了，当然最终目的页达到了——报错的页面都不会显示在目录中。</p>
+</li>
+<li>
+<p>添加<strong>Status:draft</strong>，<strong>可以使该文章不出现在任何标签页和分类页的列表中，算是用于页面的简单隐藏</strong>。设置这个属性的html将会在单独的output/drafts目录下。
+比如文章刚刚出了草稿，还不能发表，那就设置这个属性，单独将文章链接发给同事评价下吧。</p>
+</li>
+</ul>
 <hr />
-<h2 id="_3">文章中的链接</h2>
+<h2 id="_3">五、文章中的链接</h2>
+<h3 id="filename-">filename链接-指向其他文章</h3>
+<p>如果需要创建指向某资源（其他页面，图片等）的链接，需要遵循语法：<code>{filename}path/to/file</code></p>
+<p>如果有如下的目录结构，而article1.rst和article2.md需要指向对方。</p>
+<div class="highlight"><pre><span class="n">website</span><span class="o">/</span>
+<span class="err">├──</span> <span class="n">content</span>
+<span class="err">│</span>   <span class="err">├──</span> <span class="n">category</span><span class="o">/</span>
+<span class="err">│</span>   <span class="err">│</span>   <span class="err">└──</span> <span class="n">article1</span><span class="p">.</span><span class="n">rst</span>
+<span class="err">│</span>   <span class="err">├──</span> <span class="n">article2</span><span class="p">.</span><span class="n">md</span>
+<span class="err">│</span>   <span class="err">└──</span> <span class="n">pages</span>
+<span class="err">│</span>       <span class="err">└──</span> <span class="n">about</span><span class="p">.</span><span class="n">md</span>
+<span class="err">└──</span> <span class="n">pelican</span><span class="p">.</span><span class="n">conf</span><span class="p">.</span><span class="n">py</span>
+</pre></div>
+
+
+<p>在articles1.rst的正文中，指向articles2.md的链接格式应该是：</p>
+<div class="highlight"><pre>    <span class="err">`指向</span><span class="n">articles2</span><span class="err">的链接</span> <span class="o">&lt;</span><span class="p">{</span><span class="n">filename</span><span class="p">}..</span><span class="o">/</span><span class="n">articles2</span><span class="p">.</span><span class="n">md</span><span class="o">&gt;</span><span class="err">`</span><span class="n">_</span>
+</pre></div>
+
+
+<p>在articles2.md的正文中，指向articles1.rst的链接格式应该是：</p>
+<div class="highlight"><pre>    <span class="p">[</span><span class="err">指向</span><span class="n">articles1</span><span class="err">的链接</span><span class="p">]({</span><span class="n">filename</span><span class="p">}</span><span class="n">category</span><span class="o">/</span><span class="n">articles1</span><span class="p">.</span><span class="n">rst</span><span class="p">)</span>
+</pre></div>
+
+
+<h3 id="filename-_1">filename链接-指向资源文件</h3>
+<p>如果要在文章中添加图片，可以创建content/images目录，图片直接放进去就可以了。默认配置下，images目录会自动拷贝到output中。但如果要放到其他的文件夹中，则需要在配置<strong>STATIC_PATHS</strong>中添加相应的目录。
+    使用在markdown中创建链接的格式，将目标文件改为图片文件就可以了。<strong>如果要让图片直接在文章中显示，则要在前面加上感叹号‘！’</strong>。</p>
+<div class="highlight"><pre>    <span class="o">!</span><span class="p">[</span><span class="err">显示图片的链接</span><span class="p">]({</span><span class="n">filename</span><span class="p">}</span><span class="n">images</span><span class="o">/</span><span class="n">hearthstone</span><span class="p">.</span><span class="n">jpg</span><span class="p">)</span>
+</pre></div>
+
+
+<p>指向其他类型的文件都一样，点击后可以在浏览器中打开。</p>
+<h3 id="attach-">attach链接-附件链接</h3>
+<p>除了使用{filename}作为前缀的链接以外，Pelican中还有另一种链接——<strong>{attach}</strong>。格式同{filename}，只是{}中的名字不同了。
+<strong>attach</strong>，顾名思义就是附件的意思。<strong>attach和filename最大的区别在于，使用attach指向的文件会在生成后被放到和源文章的相同目录下</strong>，概念上就像源文章的附件一样。</p>
+<p><strong>attach链接是不推荐使用的</strong>。</p>
+<p>关于attach要知道几点（链接文件表示被源文章attach的文件）：
+1. 不管在content中链接文件和源文章的相对路径是怎样的，如果正常生成到了output中，那么链接文件至少是与源文章的html文件在同一目录下（如果在content时，链接文件就在源文章的目录内，如子目录，那么这个子目录会保留）；
+2. 由于被attach后，静态文件的路径会发生改变，因此一个要求链接文件只能同时被一个源文章链接。如果一个静态文件被多个源文章链接（有大于等于一个attach链接），那么只有第一个attach链接会生效，其他的链接都不会被正常转义（怎么确定第一个是哪一个？都让你别这么用了）；
+3. 能够正确使用attach的情境有两个：
+    1. 确保对链接文件的attach链接都来自同一个文件；
+    2. 所有发出attach链接的源文章都在同一个目录下。</p>
+<h3 id="tagcategory-">tag链接和category链接-指向标签页和分类页</h3>
+<p>最终的页面中会为每个tag和category生成单独的页，使用<code>{tag}path/to/file</code>和<code>{category}path/to/file</code>,可以<strong>创建指向标签页和分类页的链接</strong>。</p>
+<h3 id="-">向后兼容-|竖线|</h3>
+<p>为了保持向后兼容，Pelican暂时保留了使用竖线|作为链接符号的语法。目前这种语法已经不推荐使用。
+之所以更换了语法，是为了避免竖线同Markdown插件和rst指令相冲突。<strong>使用{花括号}的语法是目前推荐的</strong>。</p>
 <hr />
-<h2 id="_4">设置主题</h2>
+<h2 id="_4">六、设置主题</h2>
+<p>从<a href="https://github.com/getpelican/pelican-themes">https://github.com/getpelican/pelican-themes</a>可以获得几十个Pelican主题。
+下载到本地之后，只要配置<code>THEME</code>为主题所在路径就可以了。</p>
+<p>当然也可以自己创建主题， <a href="http://docs.getpelican.com/en/3.5.0/themes.html">http://docs.getpelican.com/en/3.5.0/themes.html</a>。</p>
 <hr />
-<h2 id="pelican_2">Pelican的缓存机制</h2>
+<h2 id="pelican_2">七、Pelican的缓存机制</h2>
+<p><strong>Pelican在生成时会使用缓存策略，以提高生成网页的速度</strong>。这个缓存策略其实就是指，生成过程中会将源文章文件的一些数据放到缓存中，方便下一次生成过程判断源文章文件是否被更新了，生成过程只更新那些被更新了的articles和pages。</p>
+<p>当Pelican获取到一个源文章文件（下文简称文章）时，将（‘处理该源文章’指的是开始生成该源文章文件对应的html页面）：</p>
+<ol>
+<li>如果<code>LOAD_CONTENT_CACHE</code>=True（默认），就尝试从上次生成缓存文件（保存路径配置在<code>CACHE_PATH</code>）中获取这个文章的hash值或更新时间值，并与当前的源文章文件的hash值或更新时间值进行比较；</li>
+<li>新旧文章的比较方法由<code>CHECK_MODIFIED_METHOD</code>配置。 -&gt;默认值为‘<strong>mtime</strong>’，即比较元数据更新时间<ol>
+<li>如果设置为hashlib模块中的某个hash函数（如‘md5’），则比较文件的hash值；</li>
+<li>如果设置成其他值，或者无法获取到该文章在缓存中的任何数据，则处理该文章；</li>
+</ol>
+</li>
+<li>如果比较后该文章被认为是未更新的，那么就从缓存中读取对应的数据进行生成。不处理该文章；</li>
+<li>如果比较后该文章被认为是有更新的，那么处理该文章。如果<code>CACHE_CONTENT</code>=True，则将其添加到缓存文件中。</li>
+</ol>
+<p>几点补充：</p>
+<ol>
+<li><code>CONTENT_CACHING_LAYER</code>可以设置被缓存的数据内容。默认值为’<strong>reader</strong>’，表示整个源文章文件和元数据。可选值为’<strong>generator</strong>’，缓存的是经过处理后的数据（下一次处理起来会更快）。但是不推荐配置为’generator’，虽然速度会快一点，但可能会与一些插件或<code>WITH_FUTURE_DATES</code>的设置发生冲突，产生一些奇怪的问题；</li>
+<li><code>CHECK_MODIFIED_METHOD</code>默认比较’<strong>mtime</strong>’，这种方式的速度比使用hash进行比较更快。但要考虑到元数据更新时间值在有些时候会丢失；</li>
+<li>缓存文件通过Python的pickles进行保存，因此在更换Python版本后，需要移除缓存文件重新进行生成（pickles格式在不同版本的Python中可能不同）。另外，如果<code>GZIP_CACHE</code>更改的话，也要移除缓存文件重新进行生成；</li>
+<li>尽管在生成过程中缓存了源文章，但是生成目录下的html文件始终会更新（不管源文章是否有更新）。提交时可以使用<code>—checksum</code>表示检查校验和。</li>
+</ol>
 <hr />
-<h2 id="pelican_3">Pelican插件简介</h2>
+<h2 id="pelican_3">八、Pelican插件简介</h2>
+<p>Pelican从3.0开始支持插件。使用插件能够在不修改Pelican的情况下增加更多功能。
+Pelican的所有插件都在这里：<a href="https://github.com/getpelican/pelican-plugins">https://github.com/getpelican/pelican-plugins</a>，该页面下方还有各个插件的说明。</p>
+<p>使用插件有两种形式：</p>
+<ol>
+<li>
+<p>一是在当前python环境中可以直接import得到的，这种情况下使用<code>PLUGINS</code>参数进行配置。
+    这种配置也有两种形式（一起用也是可以的）：
+    1-&gt; PLUGINS = [‘package.myplugin’,]
+    2-&gt; from package import myplugin 
+    2-&gt;PLUGINS = [myplugin,]</p>
+</li>
+<li>
+<p>二是当插件代码无法直接import时，直接指定插件的路径，这种情况下使用<code>PLUGIN_PATHS</code>参数进行配置。
+    -&gt; PLUGIN_PATHS = [‘plugins’, ‘/srv/pelican/plugins’]
+    -&gt; PLUGINS = [‘asserts’, ‘liquid_tags’, ‘sitemap’]
+    在查找时就会在/srv/pelican/plugins/目录下查找。我想其机制应该时将那个路径添加到sys.path里边，然后尝试import。</p>
+</li>
+</ol>
+<p>在生成页面的时候，pelican主程序会与各个插件进行通信，这里<a href="http://docs.getpelican.com/en/3.5.0/plugins.html#list-of-signals">http://docs.getpelican.com/en/3.5.0/plugins.html#list-of-signals</a>定义了通信的数据格式。如果需要编写插件，可以深入看看，这里不展开。</p>
 <hr />
-<h2 id="pelican_4">Pelican配置项详细说明</h2>
+<h2 id="pelican_4">九、Pelican配置项详细说明</h2>
+<p>格式比较复杂，整理中</p>
                     </section>
                     <hr/>
                     <aside class="post-meta">
