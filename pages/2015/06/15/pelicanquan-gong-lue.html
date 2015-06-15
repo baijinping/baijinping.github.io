@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>    Pelican全攻略
+</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+            <link rel="stylesheet" href="../../../../theme/css/normalize.css">
+        <link href='//fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="../../../../theme/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../../../../theme/css/main.css">
+
+    <link rel="stylesheet" href="../../../../theme/css/blog.css">
+    <link rel="stylesheet" href="../../../../theme/css/github.css">
+        <script src="../../../../theme/js/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div id="wrapper">
+<header id="sidebar" class="side-shadow">
+    <hgroup id="site-header">
+        <a id="site-title" href="../../../.."><h1><i class="icon-coffee"></i> baijinping's world</h1></a>
+        <p id="site-desc"></p>
+    </hgroup>
+    <nav>
+        <ul id="nav-links">
+                <li><a href="../../../../pages/about.html">About</a></li>
+        </ul>
+    </nav>
+<footer id="site-info">
+    <p>
+        Proudly powered by <a href="http://getpelican.com/" target="pelican">Pelican</a> and <a href="http://python.org/" target="python">Python</a>. Theme by <a href="https://github.com/hdra/pelican-cait" target="github">hndr</a>.
+    </p>
+    <p>
+        Textures by <a href="http://subtlepatterns.com/" target="subtlepatterns">Subtle Pattern</a>. Font Awesome by <a href="http://fortawesome.github.io/Font-Awesome/" target="github">Dave Grandy</a>.
+    </p>
+</footer></header>
+    <div id="post-container">
+        <ol id="post-list">
+            <li>
+                <article class="post-entry">
+                    <header class="entry-header">
+                        <time class="post-time" datetime="2015-06-15T22:30:00+08:00" pubdate>
+                            2015-06-15 周一
+                        </time>
+                        <a href="../../../../pages/2015/06/15/pelicanquan-gong-lue.html" rel="bookmark"><h1>Pelican全攻略</h1></a>
+                    </header>
+
+                    <section class="post-content">
+                        <p>Pelican是一套使用Python开发的开源静态网页生成工具。Pelican项目主页<a href="http://www.getpelican.com/">http://www.getpelican.com/</a>。</p>
+<hr />
+<div class="toc">
+<ul>
+<li><a href="#pelican">安装Pelican</a></li>
+<li><a href="#_1">快速开始</a></li>
+<li><a href="#pelican_1">Pelican配置简介</a></li>
+<li><a href="#_2">开始编写文章</a></li>
+<li><a href="#_3">文章中的链接</a></li>
+<li><a href="#_4">设置主题</a></li>
+<li><a href="#pelican_2">Pelican的缓存机制</a></li>
+<li><a href="#pelican_3">Pelican插件简介</a></li>
+<li><a href="#pelican_4">Pelican配置项详细说明</a></li>
+</ul>
+</div>
+<h2 id="pelican">安装Pelican</h2>
+<p>使用pip或者easy_install都可以。要下载最新的，还是到Pelican的github主页上下载吧：<a href="https://github.com/getpelican">https://github.com/getpelican</a></p>
+<p>安装过程中，还有一大堆的python库会依赖下载：</p>
+<ul>
+<li><strong>feedgenerator</strong>, to generate the Atom feeds</li>
+<li><strong>jinja2</strong>, for templating support</li>
+<li><strong>pygments</strong>, for syntax highlighting</li>
+<li><strong>docutils</strong>, for supporting reStructuredText as an input format</li>
+<li><strong>pytz</strong>, for timezone definitions</li>
+<li><strong>blinker</strong>, an object-to-object and broadcast signaling system</li>
+<li><strong>unidecode</strong>, for ASCII transliterations of Unicode text</li>
+<li><strong>six</strong>, for Python 2 and 3 compatibility utilities</li>
+<li><strong>MarkupSafe</strong>, for a markup safe string implementation</li>
+<li><strong>python-dateutil</strong>, to read the date metadata</li>
+</ul>
+<hr />
+<h2 id="_1">快速开始</h2>
+<p>安装完Pelican之后，可以在终端命令中找到<code>pelican-quickstart</code>。假设当前的目录是/home/mysite/，在该目录下运行<code>pelican-quickstart</code>命令，在经过n个询问的问题之后（也可以直接用默认的），Pelican就开始创建生成静态页面所需的文件了。
+    生成后的目录树如下：
+    <img alt="生成后的目录树" src="../../../../pages/2015/06/15/images/pelican-quickstart-filetree.png" /></p>
+<p>首先在content下创建一个测试文章（如下），保存为keyboard-review.md。</p>
+<div class="highlight"><pre>    <span class="nl">Title:</span> <span class="n">My</span> <span class="n">First</span> <span class="n">Review</span>
+    <span class="nl">Date:</span> <span class="mi">2010</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mo">03</span> <span class="mi">10</span><span class="o">:</span><span class="mi">20</span>
+    <span class="nl">Category:</span> <span class="n">Review</span>
+
+    <span class="n">Following</span> <span class="n">is</span> <span class="n">a</span> <span class="n">review</span> <span class="n">of</span> <span class="n">my</span> <span class="n">favorite</span> <span class="n">mechanical</span> <span class="n">keyboard</span><span class="p">.</span>
+</pre></div>
+
+
+<p>回到/home/mysite目录，运行pelican content命令，Pelican就将页面生成到output目录下了。
+进入output目录，启动python的内置http服务器：</p>
+<div class="highlight"><pre>    <span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">SimpleHTTPServer</span>
+</pre></div>
+
+
+<p>访问<a href="http://localhost:8000/">http://localhost:8000/</a>就可以看到生成好的网站了！
+    <img alt="生成后的页面快照" src="../../../../pages/2015/06/15/images/pelican-quickstart-screenshot.png" /></p>
+<hr />
+<h2 id="pelican_1">Pelican配置简介</h2>
+<hr />
+<h2 id="_2">开始编写文章</h2>
+<hr />
+<h2 id="_3">文章中的链接</h2>
+<hr />
+<h2 id="_4">设置主题</h2>
+<hr />
+<h2 id="pelican_2">Pelican的缓存机制</h2>
+<hr />
+<h2 id="pelican_3">Pelican插件简介</h2>
+<hr />
+<h2 id="pelican_4">Pelican配置项详细说明</h2>
+                    </section>
+                    <hr/>
+                    <aside class="post-meta">
+                        <p>Category: <a href="../../../../category/tech.html">Tech</a></p>
+                        <p>Tags: <a href="../../../../tag/python.html">Python</a>, </p>
+                    </aside>
+                    <hr/>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'wwwbaijinpingcom';
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+                </article>
+            </li>
+        </ol>
+    </div>
+        </div>
+
+<script>
+    var _gaq=[['_setAccount','UA-56594205-1'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+        <script src="../../../../theme/js/main.js"></script>
+    </body>
+</html>

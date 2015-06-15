@@ -75,7 +75,7 @@ LOAD_CONTENT_CACHE = False
 DISPLAY_CATEGORIES_ON_MENU = True
 
 # 是否使用typogrify库进一步修饰html标签
-TYPOGRIFY = True
+# TYPOGRIFY = True
 
-
+MD_EXTENSIONS = ['codehilite(css_class=highlight)','extra', 'smarty', 'toc']
 
