@@ -244,6 +244,9 @@ Pelican的所有插件都在这里：<https://github.com/getpelican/pelican-plug
 ------
 ## 九、Pelican配置项详细说明
 
+### Pelican基础配置项列表
+官方文档见<http://docs.getpelican.com/en/3.5.0/settings.html>
+
 | 配置项名(=默认值)			 | 中文说明	 |
 | :------------------------------------------------: | :------------------: |
 | AUTHOR | 作者名字 |
