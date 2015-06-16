@@ -170,6 +170,7 @@ website/
 **attach链接是不推荐使用的**。
 
 关于attach要知道几点（链接文件表示被源文章attach的文件）：
+
 1. 不管在content中链接文件和源文章的相对路径是怎样的，如果正常生成到了output中，那么链接文件至少是与源文章的html文件在同一目录下（如果在content时，链接文件就在源文章的目录内，如子目录，那么这个子目录会保留）；
 2. 由于被attach后，静态文件的路径会发生改变，因此一个要求链接文件只能同时被一个源文章链接。如果一个静态文件被多个源文章链接（有大于等于一个attach链接），那么只有第一个attach链接会生效，其他的链接都不会被正常转义（怎么确定第一个是哪一个？都让你别这么用了）；
 3. 能够正确使用attach的情境有两个：
@@ -242,6 +243,66 @@ Pelican的所有插件都在这里：<https://github.com/getpelican/pelican-plug
 
 ------
 ## 九、Pelican配置项详细说明
-格式比较复杂，整理中
+
+| 配置项名(=默认值)			 | 中文说明	 |
+| :------------------------------------------------: | :------------------: |
+| AUTHOR | 作者名字 |
+| DATE_FORMATS = {} | 为不同语言环境设置不同的日期格式 |
+| USE_FOLDER_AS_CATEGORY = True | 是否使用文章所在文件夹名称作为文章的category属性值 |
+| DEFAULT_CATEGORY = 'misc' | 默认category值 |
+| DEFAULT_DATE_FORMAT = '%a %d %B %Y' | 默认日期时间格式 |
+| DISPLAY_PAGES_ON_MENU = True | 是否将pages目录下的文章标题显示在顶部菜单栏 |
+| DISPLAY_CATEGORIES_ON_MENU = True | 是否将文章中的分类显示在顶部菜单栏 |
+| DEFAULT_DATE = None | 默认日期值 |
+| DEFAULT_METADATA = () | 为所有页面设置默认元数据值 |
+| DOCUTILS_SETTINGS = {} | （针对reStructuredText格式）docutils的额外输出配置 |
+| FILENAME_METADATA ='\(?P&lt;date>\\d\{4\}-\\d\{2\}-\\d\{2\}\).*' | 这是一个正则表达式，用于从文章的文件名中找到一些匹配的元数据作为该文章的元数据 |
+| PATH_METADATA = '' | 类似FILENAME_METADATA，但PATH_METADATA是从文章保存的路径进行正则查找的 |
+| EXTRA_PATH_METADATA = {} | 为一些特定的路径下的文章设定默认元数据 |
+| DELETE_OUTPUT_DIRECTORY = False | 重新生成之前，是否先删除output下的所有文件 |
+| OUTPUT_RETENTION = () | 当重新生成前要删除output时，设定一些文件保留下来，不被删除掉 |
+| JINJA_EXTENSIONS = [] | 设定Jinja的扩展 |
+| JINJA_FILTERS = {} | 使用到的Jinja过滤器，不太明白 |
+| LOCALE | 设置区域 |
+| LOG_FILTER = [] | 设置生成时的日志过滤 |
+| READERS = {} | 用来增加/删除某些格式文件的生成器 |
+| IGNORE_FILES = ['.#*'] | 生成时，不作处理的文件名规则 |
+| MD_EXTENSIONS =\['codehilite\(css_class=highlight\)','extra'\] | 添加Markdown扩展 |
+| OUTPUT_PATH = 'output/' | 设置生成的网页文件存放路径 |
+| PATH | 设置content目录的路径 |
+| PAGE_PATHS = ['pages'] | 设定某些目录下的文章被视为pages同等存在 |
+| PAGE_EXCLUDES = [] | 设定哪些目录需要在查找pages同等存在时被排除（不需要指定ARTICLE_PATHS） |
+| ARTICLE_PATHS = [''] | 设定某些目录下的文章被视为articles同等存在 |
+| ARTICLE_EXCLUDES = [] | 设定哪些目录需要在查找articles同等存在时被排除（不需要指定PAGE_PATHS） |
+| OUTPUT_SOURCES = False | 生成时网页时是否将源文章也一同拷贝到OUTPUT_PATH |
+| OUTPUT_SOURCES_EXTENSION = '.text' | 没懂 |
+| RELATIVE_URLS = False | 是否将url设为基于本地文件的url。若设为True，则本地可以测试，否则本地测试不了 |
+| PLUGINS = [] | 需要接入的插件列表。可以有两种形式：1是完整包路径，2是直接import进来之后，放入import进来的插件模块 |
+| PLUGIN_PATHS = [] | 当插件无法直接import进来时，在这里设定查找插件的路径 |
+| SITENAME = 'A Pelican Blog' | 网站名称 |
+| SITEURL | 网站实际域名，e.g.http://mydomain.com |
+| TEMPLATE_PAGES = None | 用来生成顶级的文章（category在菜单栏上），并且文章的内容完全由源html文件渲染。这是字典类型，key表示content目录下源html文件的路径，value表示output下生成的对应网页的路径 |
+| STATIC_PATHS = ['images'] | 指定content下属于静态资源的目录。在STATIC_PATHS中包含了的目录才会被拷贝到output中去。在这些目录中，复合格式的源文章依然能够被解析，但源文章在静态目录拷贝过程中将被排除。因此不需要担心在output中的images看到源文件的出现~我测试时，发现images中的文章被直接放到output/下了。但是，如果设定了STATIC_EXCLUDE_SOURCES为True，那么源文章也会直接拷贝到output/images下 |
+| STATIC_EXCLUDES = [] | 设定哪些路径在查找静态目录时要被排除 |
+| STATIC_EXCLUDE_SOURCES = True | 设定静态文件目录中的源文章是否一起拷贝到output |
+| TIMEZONE | 设置时区 |
+| TYPOGRIFY = False | 如果设置为True，将会使用typogrify库对HTML进一步的修饰 |
+| TYPOGRIFY_IGNORE_TAGS = [] | 设置typogrify库在修饰HTML代码时，不进行修饰的标签 |
+| DIRECT_TEMPLATES =('index', 'categories', 'authors', 'archives') | 用于直接渲染内容的模板列表。一般来说，这些模板用于生成索引页，包括主页，标签页，分类页，归档页等 |
+| PAGINATED_DIRECT_TEMPLATES = ('index',) | 需要使用标签页的模板 |
+| SUMMARY_MAX_LENGTH = 50 | 文章简介的默认长度。当文章没有设定Summary时使用。如果设置None则表示原文作为简介 |
+| EXTRA_TEMPLATES_PATHS = [] | 没懂 |
+| WITH_FUTURE_DATES = True | 对于元数据发布时间在未来的文章，是否设置特殊状态 |
+| INTRASITE_LINK_REGEX = '\[\{¦\]\(?P&lt;what>.*?\)\[¦\}\]' | 设置内部链接的格式 |
+| PYGMENTS_RST_OPTIONS = [] | 针对rst格式，添加对Pygments的设置 |
+| SLUGIFY_SOURCE = 'title' | 设置源文章自动生成slug的方式（默认使用title元数据进行生成） |
+| CACHE_CONTENT = True | 是否使用缓存 |
+| CONTENT_CACHING_LAYER = 'reader' | 设置缓存保存的文章数据内容 |
+| CACHE_PATH = 'cache' | 设置缓存文件保存的路径 |
+| GZIP_CACHE = True | 是否使用gzip对缓存文件进行压缩 |
+| CHECK_MODIFIED_METHOD = 'mtime' | 设置检查源文章是否有更新的策略 |
+| LOAD_CONTENT_CACHE = True | 是否从缓存中获取文章数据进行比较生成 |
+| AUTORELOAD_IGNORE_CACHE = False | 是否自动忽略缓存（等同于生成时使用—ignore-cache参数），缓存会被直接覆盖 |
+| WRITE_SELECTED = [] | 设置在生成时被重新生成的output路径。默认是整个output都重新生成一次。当某些情况下只需要微调一两个页面时，生成的速度会提高，调试的效率也提高了 |
 
 

@@ -232,12 +232,16 @@
 <p>除了使用{filename}作为前缀的链接以外，Pelican中还有另一种链接——<strong>{attach}</strong>。格式同{filename}，只是{}中的名字不同了。
 <strong>attach</strong>，顾名思义就是附件的意思。<strong>attach和filename最大的区别在于，使用attach指向的文件会在生成后被放到和源文章的相同目录下</strong>，概念上就像源文章的附件一样。</p>
 <p><strong>attach链接是不推荐使用的</strong>。</p>
-<p>关于attach要知道几点（链接文件表示被源文章attach的文件）：
-1. 不管在content中链接文件和源文章的相对路径是怎样的，如果正常生成到了output中，那么链接文件至少是与源文章的html文件在同一目录下（如果在content时，链接文件就在源文章的目录内，如子目录，那么这个子目录会保留）；
-2. 由于被attach后，静态文件的路径会发生改变，因此一个要求链接文件只能同时被一个源文章链接。如果一个静态文件被多个源文章链接（有大于等于一个attach链接），那么只有第一个attach链接会生效，其他的链接都不会被正常转义（怎么确定第一个是哪一个？都让你别这么用了）；
-3. 能够正确使用attach的情境有两个：
-    1. 确保对链接文件的attach链接都来自同一个文件；
-    2. 所有发出attach链接的源文章都在同一个目录下。</p>
+<p>关于attach要知道几点（链接文件表示被源文章attach的文件）：</p>
+<ol>
+<li>不管在content中链接文件和源文章的相对路径是怎样的，如果正常生成到了output中，那么链接文件至少是与源文章的html文件在同一目录下（如果在content时，链接文件就在源文章的目录内，如子目录，那么这个子目录会保留）；</li>
+<li>由于被attach后，静态文件的路径会发生改变，因此一个要求链接文件只能同时被一个源文章链接。如果一个静态文件被多个源文章链接（有大于等于一个attach链接），那么只有第一个attach链接会生效，其他的链接都不会被正常转义（怎么确定第一个是哪一个？都让你别这么用了）；</li>
+<li>能够正确使用attach的情境有两个：<ol>
+<li>确保对链接文件的attach链接都来自同一个文件；</li>
+<li>所有发出attach链接的源文章都在同一个目录下。</li>
+</ol>
+</li>
+</ol>
 <h3 id="tagcategory-">tag链接和category链接-指向标签页和分类页</h3>
 <p>最终的页面中会为每个tag和category生成单独的页，使用<code>{tag}path/to/file</code>和<code>{category}path/to/file</code>,可以<strong>创建指向标签页和分类页的链接</strong>。</p>
 <h3 id="-">向后兼容-|竖线|</h3>
@@ -292,7 +296,248 @@ Pelican的所有插件都在这里：<a href="https://github.com/getpelican/peli
 <p>在生成页面的时候，pelican主程序会与各个插件进行通信，这里<a href="http://docs.getpelican.com/en/3.5.0/plugins.html#list-of-signals">http://docs.getpelican.com/en/3.5.0/plugins.html#list-of-signals</a>定义了通信的数据格式。如果需要编写插件，可以深入看看，这里不展开。</p>
 <hr />
 <h2 id="pelican_4">九、Pelican配置项详细说明</h2>
-<p>格式比较复杂，整理中</p>
+<table>
+<thead>
+<tr>
+<th>配置项名(=默认值)</th>
+<th>中文说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AUTHOR</td>
+<td>作者名字</td>
+</tr>
+<tr>
+<td>DATE_FORMATS = </td>
+<td>为不同语言环境设置不同的日期格式</td>
+</tr>
+<tr>
+<td>USE_FOLDER_AS_CATEGORY = True</td>
+<td>是否使用文章所在文件夹名称作为文章的category属性值</td>
+</tr>
+<tr>
+<td>DEFAULT_CATEGORY = &lsquo;misc&rsquo;</td>
+<td>默认category值</td>
+</tr>
+<tr>
+<td>DEFAULT_DATE_FORMAT = &lsquo;%a %d %B %Y&rsquo;</td>
+<td>默认日期时间格式</td>
+</tr>
+<tr>
+<td>DISPLAY_PAGES_ON_MENU = True</td>
+<td>是否将pages目录下的文章标题显示在顶部菜单栏</td>
+</tr>
+<tr>
+<td>DISPLAY_CATEGORIES_ON_MENU = True</td>
+<td>是否将文章中的分类显示在顶部菜单栏</td>
+</tr>
+<tr>
+<td>DEFAULT_DATE = None</td>
+<td>默认日期值</td>
+</tr>
+<tr>
+<td>DEFAULT_METADATA = ()</td>
+<td>为所有页面设置默认元数据值</td>
+</tr>
+<tr>
+<td>DOCUTILS_SETTINGS = </td>
+<td>（针对reStructuredText格式）docutils的额外输出配置</td>
+</tr>
+<tr>
+<td>FILENAME_METADATA =&rsquo;(?P&lt;date&gt;\d{4}-\d{2}-\d{2}).*&rsquo;</td>
+<td>这是一个正则表达式，用于从文章的文件名中找到一些匹配的元数据作为该文章的元数据</td>
+</tr>
+<tr>
+<td>PATH_METADATA = &lsquo;&rsquo;</td>
+<td>类似FILENAME_METADATA，但PATH_METADATA是从文章保存的路径进行正则查找的</td>
+</tr>
+<tr>
+<td>EXTRA_PATH_METADATA = </td>
+<td>为一些特定的路径下的文章设定默认元数据</td>
+</tr>
+<tr>
+<td>DELETE_OUTPUT_DIRECTORY = False</td>
+<td>重新生成之前，是否先删除output下的所有文件</td>
+</tr>
+<tr>
+<td>OUTPUT_RETENTION = ()</td>
+<td>当重新生成前要删除output时，设定一些文件保留下来，不被删除掉</td>
+</tr>
+<tr>
+<td>JINJA_EXTENSIONS = []</td>
+<td>设定Jinja的扩展</td>
+</tr>
+<tr>
+<td>JINJA_FILTERS = </td>
+<td>使用到的Jinja过滤器，不太明白</td>
+</tr>
+<tr>
+<td>LOCALE</td>
+<td>设置区域</td>
+</tr>
+<tr>
+<td>LOG_FILTER = []</td>
+<td>设置生成时的日志过滤</td>
+</tr>
+<tr>
+<td>READERS = </td>
+<td>用来增加/删除某些格式文件的生成器</td>
+</tr>
+<tr>
+<td>IGNORE_FILES = [&lsquo;.#*&rsquo;]</td>
+<td>生成时，不作处理的文件名规则</td>
+</tr>
+<tr>
+<td>MD_EXTENSIONS =[&lsquo;codehilite(css_class=highlight)&lsquo;,&rsquo;extra&rsquo;]</td>
+<td>添加Markdown扩展</td>
+</tr>
+<tr>
+<td>OUTPUT_PATH = &lsquo;output/&rsquo;</td>
+<td>设置生成的网页文件存放路径</td>
+</tr>
+<tr>
+<td>PATH</td>
+<td>设置content目录的路径</td>
+</tr>
+<tr>
+<td>PAGE_PATHS = [&lsquo;pages&rsquo;]</td>
+<td>设定某些目录下的文章被视为pages同等存在</td>
+</tr>
+<tr>
+<td>PAGE_EXCLUDES = []</td>
+<td>设定哪些目录需要在查找pages同等存在时被排除（不需要指定ARTICLE_PATHS）</td>
+</tr>
+<tr>
+<td>ARTICLE_PATHS = [&lsquo;&rsquo;]</td>
+<td>设定某些目录下的文章被视为articles同等存在</td>
+</tr>
+<tr>
+<td>ARTICLE_EXCLUDES = []</td>
+<td>设定哪些目录需要在查找articles同等存在时被排除（不需要指定PAGE_PATHS）</td>
+</tr>
+<tr>
+<td>OUTPUT_SOURCES = False</td>
+<td>生成时网页时是否将源文章也一同拷贝到OUTPUT_PATH</td>
+</tr>
+<tr>
+<td>OUTPUT_SOURCES_EXTENSION = &lsquo;.text&rsquo;</td>
+<td>没懂</td>
+</tr>
+<tr>
+<td>RELATIVE_URLS = False</td>
+<td>是否将url设为基于本地文件的url。若设为True，则本地可以测试，否则本地测试不了</td>
+</tr>
+<tr>
+<td>PLUGINS = []</td>
+<td>需要接入的插件列表。可以有两种形式：1是完整包路径，2是直接import进来之后，放入import进来的插件模块</td>
+</tr>
+<tr>
+<td>PLUGIN_PATHS = []</td>
+<td>当插件无法直接import进来时，在这里设定查找插件的路径</td>
+</tr>
+<tr>
+<td>SITENAME = &lsquo;A Pelican Blog&rsquo;</td>
+<td>网站名称</td>
+</tr>
+<tr>
+<td>SITEURL</td>
+<td>网站实际域名，e.g.http://mydomain.com</td>
+</tr>
+<tr>
+<td>TEMPLATE_PAGES = None</td>
+<td>用来生成顶级的文章（category在菜单栏上），并且文章的内容完全由源html文件渲染。这是字典类型，key表示content目录下源html文件的路径，value表示output下生成的对应网页的路径</td>
+</tr>
+<tr>
+<td>STATIC_PATHS = [&lsquo;images&rsquo;]</td>
+<td>指定content下属于静态资源的目录。在STATIC_PATHS中包含了的目录才会被拷贝到output中去。在这些目录中，复合格式的源文章依然能够被解析，但源文章在静态目录拷贝过程中将被排除。因此不需要担心在output中的images看到源文件的出现~我测试时，发现images中的文章被直接放到output/下了。但是，如果设定了STATIC_EXCLUDE_SOURCES为True，那么源文章也会直接拷贝到output/images下</td>
+</tr>
+<tr>
+<td>STATIC_EXCLUDES = []</td>
+<td>设定哪些路径在查找静态目录时要被排除</td>
+</tr>
+<tr>
+<td>STATIC_EXCLUDE_SOURCES = True</td>
+<td>设定静态文件目录中的源文章是否一起拷贝到output</td>
+</tr>
+<tr>
+<td>TIMEZONE</td>
+<td>设置时区</td>
+</tr>
+<tr>
+<td>TYPOGRIFY = False</td>
+<td>如果设置为True，将会使用typogrify库对HTML进一步的修饰</td>
+</tr>
+<tr>
+<td>TYPOGRIFY_IGNORE_TAGS = []</td>
+<td>设置typogrify库在修饰HTML代码时，不进行修饰的标签</td>
+</tr>
+<tr>
+<td>DIRECT_TEMPLATES =(&lsquo;index&rsquo;, &lsquo;categories&rsquo;, &lsquo;authors&rsquo;, &lsquo;archives&rsquo;)</td>
+<td>用于直接渲染内容的模板列表。一般来说，这些模板用于生成索引页，包括主页，标签页，分类页，归档页等</td>
+</tr>
+<tr>
+<td>PAGINATED_DIRECT_TEMPLATES = (&lsquo;index&rsquo;,)</td>
+<td>需要使用标签页的模板</td>
+</tr>
+<tr>
+<td>SUMMARY_MAX_LENGTH = 50</td>
+<td>文章简介的默认长度。当文章没有设定Summary时使用。如果设置None则表示原文作为简介</td>
+</tr>
+<tr>
+<td>EXTRA_TEMPLATES_PATHS = []</td>
+<td>没懂</td>
+</tr>
+<tr>
+<td>WITH_FUTURE_DATES = True</td>
+<td>对于元数据发布时间在未来的文章，是否设置特殊状态</td>
+</tr>
+<tr>
+<td>INTRASITE_LINK_REGEX = &lsquo;[{¦](?P&lt;what&gt;.*?)[¦}]&lsquo;</td>
+<td>设置内部链接的格式</td>
+</tr>
+<tr>
+<td>PYGMENTS_RST_OPTIONS = []</td>
+<td>针对rst格式，添加对Pygments的设置</td>
+</tr>
+<tr>
+<td>SLUGIFY_SOURCE = &lsquo;title&rsquo;</td>
+<td>设置源文章自动生成slug的方式（默认使用title元数据进行生成）</td>
+</tr>
+<tr>
+<td>CACHE_CONTENT = True</td>
+<td>是否使用缓存</td>
+</tr>
+<tr>
+<td>CONTENT_CACHING_LAYER = &lsquo;reader&rsquo;</td>
+<td>设置缓存保存的文章数据内容</td>
+</tr>
+<tr>
+<td>CACHE_PATH = &lsquo;cache&rsquo;</td>
+<td>设置缓存文件保存的路径</td>
+</tr>
+<tr>
+<td>GZIP_CACHE = True</td>
+<td>是否使用gzip对缓存文件进行压缩</td>
+</tr>
+<tr>
+<td>CHECK_MODIFIED_METHOD = &lsquo;mtime&rsquo;</td>
+<td>设置检查源文章是否有更新的策略</td>
+</tr>
+<tr>
+<td>LOAD_CONTENT_CACHE = True</td>
+<td>是否从缓存中获取文章数据进行比较生成</td>
+</tr>
+<tr>
+<td>AUTORELOAD_IGNORE_CACHE = False</td>
+<td>是否自动忽略缓存（等同于生成时使用—ignore-cache参数），缓存会被直接覆盖</td>
+</tr>
+<tr>
+<td>WRITE_SELECTED = []</td>
+<td>设置在生成时被重新生成的output路径。默认是整个output都重新生成一次。当某些情况下只需要微调一两个页面时，生成的速度会提高，调试的效率也提高了</td>
+</tr>
+</tbody>
+</table>
                     </section>
                     <hr/>
                     <aside class="post-meta">
