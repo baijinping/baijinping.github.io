@@ -48,6 +48,50 @@
             <li>
                 <article class="post-entry">
                     <header class="entry-header">
+                        <time class="post-time" datetime="2015-06-27T20:40:00+08:00" pubdate>
+                            2015-06-27 周六
+                        </time>
+                        <a href="../pages/2015/06/27/shi-yong-numpyjin-xing-duo-xiang-shi-ni-he.html" rel="bookmark"><h1>使用Numpy进行多项式拟合</h1></a>
+                    </header>
+                    <section class="post-content">
+                        <p>numpy中有一系列函数用以辅助求解数据的拟合函数。
+ps:数据拟合的相关数学知识有:微积分,泰勒展开式,无穷级数等.</p>
+<p>现有数据如下：
+<a href="../pages/2015/06/27/attach/BHP.csv">BHP数据</a></p>
+<p>格式为[股票代码0，日期1，开盘价2，最高价3，最低价4，收盘价5，成交量6]
+(数据来源：《Numpy数据分析基础教程（第2版）》第4章)</p>
+<hr />
+<div class="toc">
+<ul>
+<li><a href="#_1">数据准备</a></li>
+<li><a href="#_2">获得多项式拟合函数</a></li>
+<li><a href="#_3">获得多项式拟合函数的值</a></li>
+<li><a href="#_4">获得多项式函数的导函数</a></li>
+<li><a href="#_5">求多项式函数的根</a></li>
+<li><a href="#-">提高拟合效果-采用更高阶的拟合函数</a></li>
+<li><a href="#-_1">提高拟合效果-平滑处理</a></li>
+</ul>
+</div>
+<h2 id="_1">数据准备</h2>
+<p>首先使用loadtxt()读入收盘价数据:</p>
+<div class="highlight"><pre>    <span class="n">bhpShouPan</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">bhpCsv</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s">&#39;,&#39;</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,),</span> <span class="n">unpack</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+
+
+<h2 id="_2">获得多项式拟合函数</h2>
+<hr />
+<p>使用polyfit函数可以获得一系列数据点的拟合函数.</p>
+<p>读入的数据作为y值,手动生成x值序列.</p>
+<div class="highlight"><pre>    <span class="c"># 设定x值序列</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bhpShowpan</span><span class="p">))</span>
+    <span class="c"># 设定多项式拟合精度 ...</span></pre></div>
+                    </section>
+                </article>
+            </li>
+            <hr/>
+            <li>
+                <article class="post-entry">
+                    <header class="entry-header">
                         <time class="post-time" datetime="2015-06-15T22:30:00+08:00" pubdate>
                             2015-06-15 周一
                         </time>

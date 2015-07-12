@@ -17,7 +17,7 @@ PATH = 'content'
 OUTPUT_PATH = ''
 # 设置content中的静态资源目录，只有在这里指定了，才会被拷贝到output中
 # 如果没有这个遍历，则默认只有images目录会自动拷贝到output
-STATIC_PATHS = ['images', 'favicon.ico']
+STATIC_PATHS = ['images', 'attach', 'favicon.ico']
 
 ARCHIVES_URL = 'archives.html'
 ARTICLE_URL = 'pages/{date:%Y}/{date:%m}/{date:%d}/{slug}.html'

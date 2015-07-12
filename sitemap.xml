@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.baijinping.com/</loc>
-<lastmod>2015-06-16T23:02:17-00:00</lastmod>
+<lastmod>2015-07-12T13:44:45-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.baijinping.com/archives.html</loc>
-<lastmod>2015-06-16T23:02:17-00:00</lastmod>
+<lastmod>2015-07-12T13:44:45-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.baijinping.com/tags.html</loc>
-<lastmod>2015-06-16T23:02:17-00:00</lastmod>
+<lastmod>2015-07-12T13:44:45-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.baijinping.com/categories.html</loc>
-<lastmod>2015-06-16T23:02:17-00:00</lastmod>
+<lastmod>2015-07-12T13:44:45-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -36,6 +36,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2015-06-13T10:21:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.3</priority>
+</url>
+
+<url>
+<loc>http://www.baijinping.com/pages/2015/06/27/shi-yong-numpyjin-xing-duo-xiang-shi-ni-he.html</loc>
+<lastmod>2015-06-27T20:40:00+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
 </url>
 
 <url>
@@ -89,14 +96,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.baijinping.com/category/tech.html</loc>
-<lastmod>2015-06-15T22:30:00+08:06</lastmod>
+<lastmod>2015-06-27T20:40:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.baijinping.com/tag/python.html</loc>
-<lastmod>2015-06-15T22:30:00+08:06</lastmod>
+<lastmod>2015-06-27T20:40:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -124,7 +131,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.baijinping.com/author/baijinping.html</loc>
-<lastmod>2015-06-15T22:30:00+08:06</lastmod>
+<lastmod>2015-06-27T20:40:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
