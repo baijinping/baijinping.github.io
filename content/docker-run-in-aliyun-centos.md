@@ -22,9 +22,10 @@ Summary:解决在阿里云中运行docker服务的FATA[0000]错误
 
 解决方法如下：
 在/etc/sysconfig/network-scripts中将route-eth0中的路由规则改变：
-1.将172.16.0.0/12 via 10.169.231.247 dev eth0这一行加上注释（前边加'#'）
-2.重启network服务：systemctl restart network
-3.启动docker服务：systemctl start docker
+
+1. 将172.16.0.0/12 via 10.169.231.247 dev eth0这一行加上注释（前边加'#'）
+2. 重启network服务：systemctl restart network
+3. 启动docker服务：systemctl start docker
 
 
 ps：后来感觉奇怪的是，启动docker服务成功之后，即使将route-eth0的更改还原，也不会发生上边的问题了。

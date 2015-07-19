@@ -65,10 +65,12 @@
 <h3 id="_2">解决方案</h3>
 <hr />
 <p>解决方法如下：
-在/etc/sysconfig/network-scripts中将route-eth0中的路由规则改变：
-1.将172.16.0.0/12 via 10.169.231.247 dev eth0这一行加上注释（前边加&rsquo;#&rsquo;）
-2.重启network服务：systemctl restart network
-3.启动docker服务：systemctl start docker</p>
+在/etc/sysconfig/network-scripts中将route-eth0中的路由规则改变：</p>
+<ol>
+<li>将172.16.0.0/12 via 10.169.231.247 dev eth0这一行加上注释（前边加&rsquo;#&rsquo;）</li>
+<li>重启network服务：systemctl restart network</li>
+<li>启动docker服务：systemctl start docker</li>
+</ol>
 <p>ps：后来感觉奇怪的是，启动docker服务成功之后，即使将route-eth0的更改还原，也不会发生上边的问题了。</p>
                     </section>
                     <hr/>
