@@ -48,6 +48,20 @@
             <li>
                 <article class="post-entry">
                     <header class="entry-header">
+                        <time class="post-time" datetime="2015-08-04T22:25:00+08:00" pubdate>
+                            2015-08-04 周二
+                        </time>
+                        <a href="../pages/2015/08/04/active_earth.html" rel="bookmark"><h1>~动感地球~</h1></a>
+                    </header>
+                    <section class="post-content">
+                        <p>十分酷的，能够查看当前地球的大气流动、洋流等动画信息~</p>
+                    </section>
+                </article>
+            </li>
+            <hr/>
+            <li>
+                <article class="post-entry">
+                    <header class="entry-header">
                         <time class="post-time" datetime="2015-07-19T10:57:00+08:00" pubdate>
                             2015-07-19 周日
                         </time>
@@ -161,41 +175,6 @@ ps:数据拟合的相关数学知识有:微积分,泰勒展开式,无穷级数�
                     </header>
                     <section class="post-content">
                         <p>当iOS应用进行IAP付费后(客户端与AppStore通信),AppStore会返回支付凭证给客户端.为了防止恶意破解,实际生产中通常需要对该次支付进行二次验证.</p>
-                    </section>
-                </article>
-            </li>
-            <hr/>
-            <li>
-                <article class="post-entry">
-                    <header class="entry-header">
-                        <time class="post-time" datetime="2014-12-12T14:30:00+08:00" pubdate>
-                            2014-12-12 周五
-                        </time>
-                        <a href="../pages/2014/12/12/read-memcached-data-and-dump-keys.html" rel="bookmark"><h1>实时查看memcache中的数据</h1></a>
-                    </header>
-                    <section class="post-content">
-                        <hr />
-<h4 id="memcache">memcache命令</h4>
-<p>可用telnet与memcache进行通信：</p>
-<p><code>telnet {:hostname} {:port}</code></p>
-<p>memcache的通信协议是简单文本行。使用get key可以查看对应key的值。</p>
-<p>memcache中查看数据时常用的命令：</p>
-<ul>
-<li><code>stats</code> 查看状态信息</li>
-<li><code>stats items</code> 列出每个slabs的简要信息</li>
-<li><code>stats slabs</code> 列出每个slabs的详细信息</li>
-<li><code>stats cachedump {:slabNo} {:rowNo}</code> 列出rowNo个位于指定slabNo的记录的key，如果rowNo为0，表示列出所有</li>
-<li><code>get {:key}</code> 获取指定key的数据</li>
-</ul>
-<hr />
-<h4 id="memcachekey">关于获取memcache的所有key</h4>
-<p>我在网上专门查找过关于“获取及遍历memcache的所有key”这一问题的解决方案，但无一例外都是使用<code>stats cachedump</code>命令来获取的。这个简单易懂命令很容易让人忽略一个事实，那就是cachedump能获取到的内容的大小是有上限的，cache的大小是2M。</p>
-<p>这意味着你无法确保cachedump能够将所有key导出。
-当然，这比没有要好多了。</p>
-<hr />
-<h4 id="_1">参考</h4>
-<ul>
-<li><a href="http://lzone.de/cheat-sheet/memcached#Dumping Memcache Keys">http://lzone.de/cheat-sheet/memcached#Dumping Memcache Keys ...</a></li></ul>
                     </section>
                 </article>
             </li>

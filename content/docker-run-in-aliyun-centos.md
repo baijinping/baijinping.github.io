@@ -28,7 +28,6 @@ Summary:解决在阿里云中运行docker服务的FATA[0000]错误
 3. 启动docker服务：systemctl start docker
 
 
-ps：后来感觉奇怪的是，启动docker服务成功之后，即使将route-eth0的更改还原，也不会发生上边的问题了。
 
 
 
