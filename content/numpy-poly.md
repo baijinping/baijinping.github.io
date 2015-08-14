@@ -4,6 +4,8 @@ Category:Tech
 Tags:Python
 Author:baijinping
 
+Summary:使用Numpy进行多项式拟合
+
 numpy中有一系列函数用以辅助求解数据的拟合函数。
 ps:数据拟合的相关数学知识有:微积分,泰勒展开式,无穷级数等.
 

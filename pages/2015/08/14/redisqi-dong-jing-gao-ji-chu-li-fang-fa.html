@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>    Redis启动警告及处理方法
+</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+            <link rel="stylesheet" href="../../../../theme/css/normalize.css">
+        <link href='//fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="../../../../theme/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../../../../theme/css/main.css">
+
+    <link rel="stylesheet" href="../../../../theme/css/blog.css">
+    <link rel="stylesheet" href="../../../../theme/css/github.css">
+        <script src="../../../../theme/js/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div id="wrapper">
+<header id="sidebar" class="side-shadow">
+    <hgroup id="site-header">
+        <a id="site-title" href="../../../.."><h1><i class="icon-coffee"></i> baijinping's world</h1></a>
+        <p id="site-desc"></p>
+    </hgroup>
+    <nav>
+        <ul id="nav-links">
+                <li><a href="../../../../pages/about.html">About</a></li>
+        </ul>
+    </nav>
+<footer id="site-info">
+    <p>
+        Proudly powered by <a href="http://getpelican.com/" target="pelican">Pelican</a> and <a href="http://python.org/" target="python">Python</a>. Theme by <a href="https://github.com/hdra/pelican-cait" target="github">hndr</a>.
+    </p>
+    <p>
+        Textures by <a href="http://subtlepatterns.com/" target="subtlepatterns">Subtle Pattern</a>. Font Awesome by <a href="http://fortawesome.github.io/Font-Awesome/" target="github">Dave Grandy</a>.
+    </p>
+</footer></header>
+    <div id="post-container">
+        <ol id="post-list">
+            <li>
+                <article class="post-entry">
+                    <header class="entry-header">
+                        <time class="post-time" datetime="2015-08-14T21:10:00+08:00" pubdate>
+                            2015-08-14 周五
+                        </time>
+                        <a href="../../../../pages/2015/08/14/redisqi-dong-jing-gao-ji-chu-li-fang-fa.html" rel="bookmark"><h1>Redis启动警告及处理方法</h1></a>
+                    </header>
+
+                    <section class="post-content">
+                        <h2 id="_1">发现问题</h2>
+<hr />
+<p>错误是在周三早上发生的。当时出现用户登录不了的情况，于是立即维护。</p>
+<p>Redis 版本2.8。</p>
+<h2 id="_2">分析问题</h2>
+<hr />
+<p>检查日志后发现，在与Redis通信时所有的请求都抛出了如下异常：</p>
+<div class="highlight"><pre><span class="n">MISCONF</span> <span class="n">Redis</span> <span class="n">is</span> <span class="n">configured</span> <span class="n">to</span> <span class="n">save</span> <span class="n">RDB</span> <span class="n">snapshots</span><span class="p">,</span> <span class="n">but</span> <span class="n">is</span> <span class="n">currently</span> <span class="n">not</span> <span class="n">able</span> <span class="n">to</span> <span class="n">persist</span> <span class="n">on</span> <span class="n">disk</span><span class="p">.</span> <span class="n">Commands</span> <span class="n">that</span> <span class="n">may</span> <span class="n">modify</span> <span class="n">the</span> <span class="n">data</span> <span class="n">set</span> <span class="n">are</span> <span class="n">disabled</span><span class="p">.</span> <span class="n">Please</span> <span class="n">check</span> <span class="n">Redis</span> <span class="n">logs</span> <span class="k">for</span> <span class="n">details</span> <span class="n">about</span> <span class="n">the</span> <span class="n">error</span><span class="p">.</span>
+</pre></div>
+
+
+<p>是Redis的快照行为出现错误，导致Redis拒绝执行请求。查看Redis的日志&lt;马赛克了&gt;，发现异常：</p>
+<div class="highlight"><pre><span class="p">......</span>
+<span class="mi">12</span> <span class="n">Aug</span> <span class="o">|</span> <span class="o">*</span> <span class="mi">20000</span> <span class="n">changes</span> <span class="n">in</span> <span class="mi">600</span> <span class="n">seconds</span><span class="p">.</span> <span class="n">Saving</span><span class="p">...</span>
+<span class="mi">12</span> <span class="n">Aug</span> <span class="o">|</span> <span class="o">*</span> <span class="n">Background</span> <span class="n">saving</span> <span class="n">started</span> <span class="n">by</span> <span class="n">pid</span> <span class="mi">6529</span>
+<span class="mi">12</span> <span class="n">Aug</span> <span class="o">|</span> <span class="o">*</span> <span class="n">DB</span> <span class="n">saved</span> <span class="n">on</span> <span class="n">disk</span>
+<span class="mi">12</span> <span class="n">Aug</span> <span class="o">|</span> <span class="o">*</span> <span class="n">RDB</span><span class="o">:</span> <span class="mi">100</span> <span class="n">MB</span> <span class="n">of</span> <span class="n">memory</span> <span class="n">used</span> <span class="n">by</span> <span class="n">copy</span><span class="o">-</span><span class="n">on</span><span class="o">-</span><span class="n">write</span>
+<span class="mi">12</span> <span class="n">Aug</span> <span class="o">|</span> <span class="o">*</span> <span class="n">Background</span> <span class="n">saving</span> <span class="n">terminated</span> <span class="n">with</span> <span class="n">success</span>
+<span class="mi">12</span> <span class="n">Aug</span> <span class="o">|</span> <span class="o">*</span> <span class="mi">20000</span> <span class="n">changes</span> <span class="n">in</span> <span class="mi">600</span> <span class="n">seconds</span><span class="p">.</span> <span class="n">Saving</span><span class="p">...</span>
+<span class="mi">12</span> <span class="n">Aug</span> <span class="o">|</span> <span class="err">#</span> <span class="n">Can</span><span class="err">&#39;</span><span class="n">t</span> <span class="n">save</span> <span class="n">in</span> <span class="n">background</span><span class="o">:</span> <span class="n">fork</span><span class="o">:</span> <span class="n">Cannot</span> <span class="n">allocate</span> <span class="n">memory</span>
+<span class="mi">12</span> <span class="n">Aug</span> <span class="o">|</span> <span class="o">*</span> <span class="mi">20000</span> <span class="n">changes</span> <span class="n">in</span> <span class="mi">600</span> <span class="n">seconds</span><span class="p">.</span> <span class="n">Saving</span><span class="p">...</span>
+<span class="mi">12</span> <span class="n">Aug</span> <span class="o">|</span> <span class="err">#</span> <span class="n">Can</span><span class="err">&#39;</span><span class="n">t</span> <span class="n">save</span> <span class="n">in</span> <span class="n">background</span><span class="o">:</span> <span class="n">fork</span><span class="o">:</span> <span class="n">Cannot</span> <span class="n">allocate</span> <span class="n">memory</span>
+<span class="p">......</span>
+</pre></div>
+
+
+<p>发生问题的直接原因是，在某一次Redis进行RDB备份的时候，由于申请不到足够的内存，导致备份失败，然后就一直拒绝处理请求。</p>
+<h2 id="_3">解决问题</h2>
+<hr />
+<p>原因找到了，就是内存不足。而内存不足的元凶正是RDB行为。</p>
+<p>Redis进行RDB备份时，借助列fock命令的copy on write机制，在生成快照时，将当前进程整个复制出来，fock出一个子进程，然后在子进程中将所有数据写入到新的RDB文件。由此产生的问题：</p>
+<ul>
+<li><strong>进行RDB备份时，需要多消耗Redis访问所占用内存的1倍</strong></li>
+<li>如果数据集庞大，那么将产生大量的I/O负载</li>
+</ul>
+<p>这里就不讨论如何选择Redis备份方案，注重解决问题。
+比如说这台服务器是1G内存，Redis服务已经使用了600M的内存。如果此时进行RDB备份，Redis向OS申请内存。而OS发现内存不足，就告诉Redis进程内存不够，于是备份失败。</p>
+<h2 id="overcommit_memory">overcommit_memory警告</h2>
+<hr />
+<p>按照正常逻辑，如果系统内存不足，就会开始分配虚拟内存，不至于发生这种问题。
+通过查找资料发现，其他人也遇到过这个问题。最终发现与Linux内存分配策略的设置参数有关：<strong>vm:overcommit_memory</strong>。</p>
+<p>在Redis启动日志的开头找到如下警告：</p>
+<div class="highlight"><pre><span class="n">WARNING</span> <span class="n">overcommit_memory</span> <span class="n">is</span> <span class="n">set</span> <span class="n">to</span> <span class="mi">0</span><span class="o">!</span> <span class="n">Background</span> <span class="n">save</span> <span class="n">may</span> <span class="n">fail</span> <span class="n">under</span> <span class="n">low</span> <span class="n">memory</span> <span class="n">condition</span><span class="p">.</span> <span class="n">To</span> <span class="n">fix</span> <span class="n">this</span> <span class="n">issue</span> <span class="n">add</span> <span class="err">&#39;</span><span class="n">vm</span><span class="p">.</span><span class="n">overcommit_memory</span> <span class="o">=</span> <span class="mi">1</span><span class="err">&#39;</span> <span class="n">to</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">sysctl</span><span class="p">.</span><span class="n">conf</span> <span class="n">and</span> <span class="n">then</span> <span class="n">reboot</span> <span class="n">or</span> <span class="n">run</span> <span class="n">the</span> <span class="n">command</span> <span class="err">&#39;</span><span class="n">sysctl</span> <span class="n">vm</span><span class="p">.</span><span class="n">overcommit_memory</span><span class="o">=</span><span class="mi">1</span><span class="err">&#39;</span> <span class="k">for</span> <span class="n">this</span> <span class="n">to</span> <span class="n">take</span> <span class="n">effect</span><span class="p">.</span>
+</pre></div>
+
+
+<h3 id="overcommit_memory_1">内核参数overcommit_memory</h3>
+<p>它指 内存分配策略:
+    可选值：0、1、2：</p>
+<ul>
+<li>0， 表示内核将检查是否有足够的可用内存供应用进程使用；如果有足够的可用内存，内存申请允许；否则，内存申请失败，并把错误返回给应用进程。</li>
+<li>1， 表示内核允许分配所有的物理内存，而不管当前的内存状态如何。</li>
+<li>2， 表示内核允许分配超过所有物理内存和交换空间总和的内存</li>
+</ul>
+<p>了解了overcommit的意义之后，解决这个问题非常简单，按照日志提示将vm.overcommit_memory设为1即可。
+有3种方式修改内核参数，但要有root权限：</p>
+<ol>
+<li>编辑/etc/sysctl.conf ，改vm.overcommit_memory=1，然后sysctl -p 使配置文件生效;</li>
+<li>sysctl vm.overcommit_memory=1</li>
+<li>echo 1 &gt; /proc/sys/vm/overcommit_memory</li>
+</ol>
+<p>内核参数修改之后，不需要重启OS，也不需要重启Redis服务，立即就会生效。</p>
+<h2 id="thp">THP警告</h2>
+<hr />
+<p>启动时还可能遇到THP警告：</p>
+<div class="highlight"><pre><span class="n">WARNING</span> <span class="n">you</span> <span class="n">have</span> <span class="n">Transparent</span> <span class="n">Huge</span> <span class="n">Pages</span> <span class="p">(</span><span class="n">THP</span><span class="p">)</span> <span class="n">support</span> <span class="n">enabled</span> <span class="n">in</span> <span class="n">your</span> <span class="n">kernel</span><span class="p">.</span> <span class="n">This</span> <span class="n">will</span> <span class="n">create</span> <span class="n">latency</span> <span class="n">and</span> <span class="n">memory</span> <span class="n">usage</span> <span class="n">issues</span> <span class="n">with</span> <span class="n">Redis</span><span class="p">.</span> <span class="n">To</span> <span class="n">fix</span> <span class="n">this</span> <span class="n">issue</span> <span class="n">run</span> <span class="n">the</span> <span class="n">command</span> <span class="err">&#39;</span><span class="n">echo</span> <span class="n">never</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">sys</span><span class="o">/</span><span class="n">kernel</span><span class="o">/</span><span class="n">mm</span><span class="o">/</span><span class="n">transparent_hugepage</span><span class="o">/</span><span class="n">enabled</span><span class="err">&#39;</span> <span class="n">as</span> <span class="n">root</span><span class="p">,</span> <span class="n">and</span> <span class="n">add</span> <span class="n">it</span> <span class="n">to</span> <span class="n">your</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rc</span><span class="p">.</span><span class="n">local</span> <span class="n">in</span> <span class="n">order</span> <span class="n">to</span> <span class="n">retain</span> <span class="n">the</span> <span class="n">setting</span> <span class="n">after</span> <span class="n">a</span> <span class="n">reboot</span><span class="p">.</span> <span class="n">Redis</span> <span class="n">must</span> <span class="n">be</span> <span class="n">restarted</span> <span class="n">after</span> <span class="n">THP</span> <span class="n">is</span> <span class="n">disabled</span><span class="p">.</span>
+</pre></div>
+
+
+<p>查看参考[3]的资料可以得到比较细致的分析。
+解决方法就是按照警告中说的：</p>
+<ol>
+<li>echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled</li>
+<li>重启Redis服务</li>
+</ol>
+<h2 id="tcp-backlog">TCP backlog设置警告</h2>
+<hr />
+<p>启动时还可能遇到TCP backlog警告</p>
+<div class="highlight"><pre><span class="n">WARNING</span><span class="o">:</span> <span class="n">The</span> <span class="n">TCP</span> <span class="n">backlog</span> <span class="n">setting</span> <span class="n">of</span> <span class="mi">511</span> <span class="n">cannot</span> <span class="n">be</span> <span class="n">enforced</span> <span class="n">because</span> <span class="sr">/proc/sys/net/core/s</span><span class="n">omaxconn</span> <span class="k">is</span> <span class="kd">set</span> <span class="n">to</span> <span class="n">the</span> <span class="n">lower</span> <span class="n">value</span> <span class="n">of</span> <span class="mi">128</span><span class="o">.</span>
+</pre></div>
+
+
+<p>详细参考[4]和[5].</p>
+<p>解决方法：
+    echo 511 &gt; /proc/sys/net/core/somaxconn</p>
+<h2 id="_4">总结</h2>
+<hr />
+<p>redis配置文件中有许多的配置项，某些配置项的取值还要考虑系统本身的参数配置。</p>
+<p>配置一旦有问题，很容易出现预料不到的情况。还好启动时有警告提示，遇到时细心解决就好了。</p>
+<p>一句话，redis的配置文件得重新过一遍了。</p>
+<h2 id="_5">参考资料</h2>
+<hr />
+<ol>
+<li><a href="http://blog.csdn.net/whycold/article/details/21388455">有关linux下redis overcommit_memory的问题</a></li>
+<li><a href="http://skly-java.iteye.com/blog/2167400">Redis 启动警告错误解决</a></li>
+<li><a href="http://blog.csdn.net/chosen0ne/article/details/46625359">redis做RDB时请求超时case</a></li>
+<li><a href="http://www.bubuko.com/infodetail-311772.html">redis tcp-backlog配置</a></li>
+<li><a href="http://jaseywang.me/2014/07/20/tcp-queue-的一些问题">TCP queue 的一些问题</a></li>
+</ol>
+                    </section>
+                    <hr/>
+                    <aside class="post-meta">
+                        <p>Category: <a href="../../../../category/tech.html">Tech</a></p>
+                        <p>Tags: <a href="../../../../tag/nosql.html">NoSQL</a>, </p>
+                    </aside>
+                    <hr/>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'wwwbaijinpingcom';
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+                </article>
+            </li>
+        </ol>
+    </div>
+        </div>
+
+<script>
+    var _gaq=[['_setAccount','UA-56594205-1'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+        <script src="../../../../theme/js/main.js"></script>
+    </body>
+</html>

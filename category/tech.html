@@ -48,6 +48,20 @@
             <li>
                 <article class="post-entry">
                     <header class="entry-header">
+                        <time class="post-time" datetime="2015-08-14T21:10:00+08:00" pubdate>
+                            2015-08-14 周五
+                        </time>
+                        <a href="../pages/2015/08/14/redisqi-dong-jing-gao-ji-chu-li-fang-fa.html" rel="bookmark"><h1>Redis启动警告及处理方法</h1></a>
+                    </header>
+                    <section class="post-content">
+                        <p>对遇到过的Redis启动警告的一些情况分析和相应的应对方法</p>
+                    </section>
+                </article>
+            </li>
+            <hr/>
+            <li>
+                <article class="post-entry">
+                    <header class="entry-header">
                         <time class="post-time" datetime="2015-07-19T10:57:00+08:00" pubdate>
                             2015-07-19 周日
                         </time>
@@ -68,7 +82,8 @@
                         <a href="../pages/2015/06/27/shi-yong-numpyjin-xing-duo-xiang-shi-ni-he.html" rel="bookmark"><h1>使用Numpy进行多项式拟合</h1></a>
                     </header>
                     <section class="post-content">
-                        <p>numpy中有一系列函数用以辅助求解数据的拟合函数。
+                        <p>Summary:使用Numpy进行多项式拟合</p>
+<p>numpy中有一系列函数用以辅助求解数据的拟合函数。
 ps:数据拟合的相关数学知识有:微积分,泰勒展开式,无穷级数等.</p>
 <p>现有数据如下：
 <a href="../pages/2015/06/27/attach/BHP.csv">BHP数据</a></p>
@@ -97,8 +112,7 @@ ps:数据拟合的相关数学知识有:微积分,泰勒展开式,无穷级数�
 <p>使用polyfit函数可以获得一系列数据点的拟合函数.</p>
 <p>读入的数据作为y值,手动生成x值序列.</p>
 <div class="highlight"><pre>    <span class="c"># 设定x值序列</span>
-    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bhpShowpan</span><span class="p">))</span>
-    <span class="c"># 设定多项式拟合精度 ...</span></pre></div>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len ...</span></pre></div>
                     </section>
                 </article>
             </li>
@@ -112,41 +126,7 @@ ps:数据拟合的相关数学知识有:微积分,泰勒展开式,无穷级数�
                         <a href="../pages/2015/06/15/pelicanquan-gong-lue.html" rel="bookmark"><h1>Pelican全攻略</h1></a>
                     </header>
                     <section class="post-content">
-                        <p>Pelican是一套使用Python开发的开源静态网页生成工具。Pelican项目主页<a href="http://www.getpelican.com/">http://www.getpelican.com/</a>。</p>
-<hr />
-<div class="toc">
-<ul>
-<li><a href="#pelican">一、安装Pelican</a></li>
-<li><a href="#_1">二、快速开始</a></li>
-<li><a href="#pelican_1">三、Pelican配置简介</a></li>
-<li><a href="#_2">四、开始编写文章</a><ul>
-<li><a href="#articles">Articles</a></li>
-<li><a href="#pages">Pages</a></li>
-<li><a href="#file-metadata">文章元数据(File Metadata)追加内容</a></li>
-</ul>
-</li>
-<li><a href="#_3">五、文章中的链接</a><ul>
-<li><a href="#filename-">filename链接-指向其他文章</a></li>
-<li><a href="#filename-_1">filename链接-指向资源文件</a></li>
-<li><a href="#attach-">attach链接-附件链接</a></li>
-<li><a href="#tagcategory-">tag链接和category链接-指向标签页和分类页</a></li>
-<li><a href="#-">向后兼容-|竖线|</a></li>
-</ul>
-</li>
-<li><a href="#_4">六、设置主题</a></li>
-<li><a href="#pelican_2">七、Pelican的缓存机制</a></li>
-<li><a href="#pelican_3">八、Pelican插件简介</a></li>
-<li><a href="#pelican_4">九、Pelican配置项详细说明</a><ul>
-<li><a href="#pelican_5">Pelican基础配置项列表</a></li>
-</ul>
-</li>
-</ul>
-</div>
-<h2 id="pelican">一、安装Pelican</h2>
-<p>使用pip或者easy_install都可以。要下载最新的，还是到Pelican的github主页上下载吧：<a href="https://github.com/getpelican">https://github.com/getpelican</a></p>
-<p>安装过程中，还有一大堆的python库会依赖下载：</p>
-<ul>
-<li><strong>feedgenerator</strong>, to ...</li></ul>
+                        <p>详细介绍了静态网页生成工具Pelican的使用方法，还有经过翻译的Setting项内容</p>
                     </section>
                 </article>
             </li>
@@ -161,41 +141,6 @@ ps:数据拟合的相关数学知识有:微积分,泰勒展开式,无穷级数�
                     </header>
                     <section class="post-content">
                         <p>当iOS应用进行IAP付费后(客户端与AppStore通信),AppStore会返回支付凭证给客户端.为了防止恶意破解,实际生产中通常需要对该次支付进行二次验证.</p>
-                    </section>
-                </article>
-            </li>
-            <hr/>
-            <li>
-                <article class="post-entry">
-                    <header class="entry-header">
-                        <time class="post-time" datetime="2014-12-12T14:30:00+08:00" pubdate>
-                            2014-12-12 周五
-                        </time>
-                        <a href="../pages/2014/12/12/read-memcached-data-and-dump-keys.html" rel="bookmark"><h1>实时查看memcache中的数据</h1></a>
-                    </header>
-                    <section class="post-content">
-                        <hr />
-<h4 id="memcache">memcache命令</h4>
-<p>可用telnet与memcache进行通信：</p>
-<p><code>telnet {:hostname} {:port}</code></p>
-<p>memcache的通信协议是简单文本行。使用get key可以查看对应key的值。</p>
-<p>memcache中查看数据时常用的命令：</p>
-<ul>
-<li><code>stats</code> 查看状态信息</li>
-<li><code>stats items</code> 列出每个slabs的简要信息</li>
-<li><code>stats slabs</code> 列出每个slabs的详细信息</li>
-<li><code>stats cachedump {:slabNo} {:rowNo}</code> 列出rowNo个位于指定slabNo的记录的key，如果rowNo为0，表示列出所有</li>
-<li><code>get {:key}</code> 获取指定key的数据</li>
-</ul>
-<hr />
-<h4 id="memcachekey">关于获取memcache的所有key</h4>
-<p>我在网上专门查找过关于“获取及遍历memcache的所有key”这一问题的解决方案，但无一例外都是使用<code>stats cachedump</code>命令来获取的。这个简单易懂命令很容易让人忽略一个事实，那就是cachedump能获取到的内容的大小是有上限的，cache的大小是2M。</p>
-<p>这意味着你无法确保cachedump能够将所有key导出。
-当然，这比没有要好多了。</p>
-<hr />
-<h4 id="_1">参考</h4>
-<ul>
-<li><a href="http://lzone.de/cheat-sheet/memcached#Dumping Memcache Keys">http://lzone.de/cheat-sheet/memcached#Dumping Memcache Keys ...</a></li></ul>
                     </section>
                 </article>
             </li>

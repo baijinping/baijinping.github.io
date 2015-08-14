@@ -3,7 +3,7 @@ Date:2015-06-15 22:30
 Category:Tech
 Tags:Python
 Author:baijinping
-
+Summary:详细介绍了静态网页生成工具Pelican的使用方法，还有经过翻译的Setting项内容
 
 Pelican是一套使用Python开发的开源静态网页生成工具。Pelican项目主页<http://www.getpelican.com/>。
 

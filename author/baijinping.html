@@ -48,6 +48,20 @@
             <li>
                 <article class="post-entry">
                     <header class="entry-header">
+                        <time class="post-time" datetime="2015-08-14T21:10:00+08:00" pubdate>
+                            2015-08-14 周五
+                        </time>
+                        <a href="../pages/2015/08/14/redisqi-dong-jing-gao-ji-chu-li-fang-fa.html" rel="bookmark"><h1>Redis启动警告及处理方法</h1></a>
+                    </header>
+                    <section class="post-content">
+                        <p>对遇到过的Redis启动警告的一些情况分析和相应的应对方法</p>
+                    </section>
+                </article>
+            </li>
+            <hr/>
+            <li>
+                <article class="post-entry">
+                    <header class="entry-header">
                         <time class="post-time" datetime="2015-08-04T22:25:00+08:00" pubdate>
                             2015-08-04 周二
                         </time>
@@ -82,7 +96,8 @@
                         <a href="../pages/2015/06/27/shi-yong-numpyjin-xing-duo-xiang-shi-ni-he.html" rel="bookmark"><h1>使用Numpy进行多项式拟合</h1></a>
                     </header>
                     <section class="post-content">
-                        <p>numpy中有一系列函数用以辅助求解数据的拟合函数。
+                        <p>Summary:使用Numpy进行多项式拟合</p>
+<p>numpy中有一系列函数用以辅助求解数据的拟合函数。
 ps:数据拟合的相关数学知识有:微积分,泰勒展开式,无穷级数等.</p>
 <p>现有数据如下：
 <a href="../pages/2015/06/27/attach/BHP.csv">BHP数据</a></p>
@@ -111,8 +126,7 @@ ps:数据拟合的相关数学知识有:微积分,泰勒展开式,无穷级数�
 <p>使用polyfit函数可以获得一系列数据点的拟合函数.</p>
 <p>读入的数据作为y值,手动生成x值序列.</p>
 <div class="highlight"><pre>    <span class="c"># 设定x值序列</span>
-    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bhpShowpan</span><span class="p">))</span>
-    <span class="c"># 设定多项式拟合精度 ...</span></pre></div>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len ...</span></pre></div>
                     </section>
                 </article>
             </li>
@@ -126,55 +140,7 @@ ps:数据拟合的相关数学知识有:微积分,泰勒展开式,无穷级数�
                         <a href="../pages/2015/06/15/pelicanquan-gong-lue.html" rel="bookmark"><h1>Pelican全攻略</h1></a>
                     </header>
                     <section class="post-content">
-                        <p>Pelican是一套使用Python开发的开源静态网页生成工具。Pelican项目主页<a href="http://www.getpelican.com/">http://www.getpelican.com/</a>。</p>
-<hr />
-<div class="toc">
-<ul>
-<li><a href="#pelican">一、安装Pelican</a></li>
-<li><a href="#_1">二、快速开始</a></li>
-<li><a href="#pelican_1">三、Pelican配置简介</a></li>
-<li><a href="#_2">四、开始编写文章</a><ul>
-<li><a href="#articles">Articles</a></li>
-<li><a href="#pages">Pages</a></li>
-<li><a href="#file-metadata">文章元数据(File Metadata)追加内容</a></li>
-</ul>
-</li>
-<li><a href="#_3">五、文章中的链接</a><ul>
-<li><a href="#filename-">filename链接-指向其他文章</a></li>
-<li><a href="#filename-_1">filename链接-指向资源文件</a></li>
-<li><a href="#attach-">attach链接-附件链接</a></li>
-<li><a href="#tagcategory-">tag链接和category链接-指向标签页和分类页</a></li>
-<li><a href="#-">向后兼容-|竖线|</a></li>
-</ul>
-</li>
-<li><a href="#_4">六、设置主题</a></li>
-<li><a href="#pelican_2">七、Pelican的缓存机制</a></li>
-<li><a href="#pelican_3">八、Pelican插件简介</a></li>
-<li><a href="#pelican_4">九、Pelican配置项详细说明</a><ul>
-<li><a href="#pelican_5">Pelican基础配置项列表</a></li>
-</ul>
-</li>
-</ul>
-</div>
-<h2 id="pelican">一、安装Pelican</h2>
-<p>使用pip或者easy_install都可以。要下载最新的，还是到Pelican的github主页上下载吧：<a href="https://github.com/getpelican">https://github.com/getpelican</a></p>
-<p>安装过程中，还有一大堆的python库会依赖下载：</p>
-<ul>
-<li><strong>feedgenerator</strong>, to ...</li></ul>
-                    </section>
-                </article>
-            </li>
-            <hr/>
-            <li>
-                <article class="post-entry">
-                    <header class="entry-header">
-                        <time class="post-time" datetime="2015-01-20T23:00:00+08:00" pubdate>
-                            2015-01-20 周二
-                        </time>
-                        <a href="../pages/2015/01/20/appstore-iap-second-verify.html" rel="bookmark"><h1>对appstore的IAP订单进行服务端的二次验证</h1></a>
-                    </header>
-                    <section class="post-content">
-                        <p>当iOS应用进行IAP付费后(客户端与AppStore通信),AppStore会返回支付凭证给客户端.为了防止恶意破解,实际生产中通常需要对该次支付进行二次验证.</p>
+                        <p>详细介绍了静态网页生成工具Pelican的使用方法，还有经过翻译的Setting项内容</p>
                     </section>
                 </article>
             </li>
