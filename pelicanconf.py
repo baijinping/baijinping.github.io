@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*- #
+# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
 AUTHOR = u'baijinping'
@@ -11,10 +11,12 @@ DEFAULT_LANG = u'zh'
 DEFAULT_DATE_FORMAT = '%Y-%m-%d %a'
 
 # https://github.com/hdra/pelican-cait
-THEME = 'F:\GitSpace\pelican-cait'
+#THEME = 'F:\GitSpace\pelican-cait'
+#THEME = 'F:\GitSpace\my_blog_theme'
+THEME = 'F:\GitSpace\pelican-octopress-theme'
 
 PATH = 'content'
-OUTPUT_PATH = ''
+OUTPUT_PATH = '.'
 # 设置content中的静态资源目录，只有在这里指定了，才会被拷贝到output中
 # 如果没有这个遍历，则默认只有images目录会自动拷贝到output
 STATIC_PATHS = ['images', 'attach', 'favicon.ico']
