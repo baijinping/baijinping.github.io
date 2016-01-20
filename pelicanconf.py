@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 AUTHOR = u'baijinping'
-SITENAME = u"baijinping's world"
+SITENAME = u"忆海拾贝"
 SITEURL = 'http://www.baijinping.com'
 
 TIMEZONE = 'Asia/Shanghai'

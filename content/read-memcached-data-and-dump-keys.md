@@ -1,7 +1,7 @@
 Title:实时查看memcache中的数据
 Date:2014-12-12 14:30
 Category:Tech
-Tags:NoSQL
+Tags:memcache
 Slug:read-memcached-data-and-dump-keys
 
 

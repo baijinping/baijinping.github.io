@@ -1,7 +1,7 @@
 Title:Redis启动警告及处理方法
 Date:2015-08-14 21:10
 Category:Tech
-Tags:NoSQL
+Tags:Redis
 Author:baijinping
 Summary:对遇到过的Redis启动警告的一些情况分析和相应的应对方法
 

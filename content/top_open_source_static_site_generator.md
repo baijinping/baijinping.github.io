@@ -8,10 +8,10 @@ Summary:一大波用于生成静态网页的开源库
 
 
 各种语言的静态网页生成库列表
-https://www.staticgen.com/
+<https://www.staticgen.com/>
 
 python的静态网页生成库的进一步介绍
-http://www.fullstackpython.com/static-site-generator.html
+<http://www.fullstackpython.com/static-site-generator.html>
 
 pelican比较好的新手指南
-http://www.notionsandnotes.org/tech/web-development/pelican-static-blog-setup.html
+<http://www.notionsandnotes.org/tech/web-development/pelican-static-blog-setup.html>
