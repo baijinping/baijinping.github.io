@@ -70,6 +70,7 @@ ps:整个分析过程还涉及到两块知识点，这里不深究：
 
 ### 参考
 ---
-
+* [Redis Signals](http://redis.io/topics/signals)
 * [MISCONF Redis is configured to save RDB snapshots](http://stackoverflow.com/questions/19581059/misconf-redis-is-configured-to-save-rdb-snapshots)
 * [Linux 的 Out-of-Memory (OOM) Killer](http://dbanotes.net/database/linux_outofmemory_oom_killer.html)
+* [Linux vm运行参数之（二）：OOM相关的参数](http://www.wowotech.net/linux_kenrel/oom.html)
